@@ -17,6 +17,7 @@ strategies
         <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    	[<filter(res-to-link-html)> res*]
 
     </head>
     <body>
@@ -108,7 +109,7 @@ strategies
 ]
     where <string-ends-with(|".js")> filename
 
-  res-to-script-html :
+  res-to-link-html :
     filename -> $[<link rel="stylesheet" type="text/css" href="[filename]"/>
 ]
     where <string-ends-with(|".css")> filename
