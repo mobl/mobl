@@ -141,12 +141,6 @@ let
       version = "0.3.999";
       src = moblPlugin;
       buildInputs = [pkgs.strategoPackages.sdf];
-      preConfigure = ''
-        cp -Rv ${mobl} mobl
-        chmod -R a+w mobl
-        mkdir -p mobl/utils
-        export LOCALCLASSPATH="utils/js.jar"
-      '';
     };
 
     tests = {
@@ -158,6 +152,25 @@ let
         };
         updatesites = [ "file://${jobs.updatesite}/site" ];
         installIUs = [ "org.mobl_lang.feature.feature.group" ];
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         dontInstall = true;
       };
     };
