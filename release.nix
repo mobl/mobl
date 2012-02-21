@@ -145,7 +145,7 @@ let
         cp -Rv ${mobl} mobl
         chmod -R a+w mobl
         mkdir -p mobl/utils
-        rm -f mobl/utils/
+        rm -Rf mobl/utils/
         export LOCALCLASSPATH="utils/js.jar"
       '';
     };
