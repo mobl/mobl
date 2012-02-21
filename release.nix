@@ -145,7 +145,7 @@ let
         cp -Rv ${mobl} mobl
         chmod -R a+w mobl
         mkdir -p mobl/utils
-        cp -v `find $eclipse -name StrategoMix.def` mobl/utils/StrategoMix.def
+        cp -v `find $eclipse -name StrategoMix.def` mobl/utils/
         export LOCALCLASSPATH="utils/js.jar"
       '';
     };
