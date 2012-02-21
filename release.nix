@@ -108,7 +108,11 @@ let
       preConfigure = ''
         ulimit -s unlimited
         mkdir -p utils
-
+        cp -v ${aster} utils/aster.jar
+        cp -v ${make_permissive} utils/make_permissive.jar
+        cp -v ${strategoxt} utils/strategoxt.jar
+        cp -v ${sdf2imp} utils/sdf2imp.jar
+        cp -v ${strategomix} utils/StrategoMix.def
         ensureDir $out/bin
       '';
     };
