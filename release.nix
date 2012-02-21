@@ -141,6 +141,13 @@ let
       version = "0.3.999";
       src = moblPlugin;
       buildInputs = [pkgs.strategoPackages.sdf];
+      preConfigure = ''
+        cp -Rv ${mobl} mobl
+        chmod -R a+w mobl
+        mkdir -p mobl/utils
+        rm -f mobl/utils/
+        export LOCALCLASSPATH="utils/js.jar"
+      '';
     };
 
     tests = {
