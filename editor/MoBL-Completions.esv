@@ -36,8 +36,8 @@ completions
     "service " <name> " {\n\tresource someResource() : Dynamic {\n\t\turi = \"/someResource\"\n\t}\n}" (blank)
 
   completion template : Definition =
-    "import " <some::module> (blank)
-
+    // "import " <some::module> (blank)
+		"import " <someModule> (blank)
   completion template : Definition =
     "resource " <some/file.png> (blank)
 
