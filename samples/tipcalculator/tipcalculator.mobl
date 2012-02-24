@@ -4,7 +4,7 @@ import mobl::ui::generic
 
 screen root() {
   var amount     =  20
-  var percentage =  10
+  var percentage =  10 
   header("Tip calculator")
   group {
     item { numField(amount, label="amount") }

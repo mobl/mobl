@@ -4,7 +4,7 @@ import mobl::ui::generic
 import mobl::ui::stylemixin
 
 // STYLES
-style tweetStyle {
+style tweetStyle { 
   padding: 10px;
   margin: 5px;
   min-height: 50px;
@@ -22,6 +22,7 @@ style tweetIconStyle {
 type Trend {
   name : String
   url  : String
+  query: String
 }
 
 type Tweet {
@@ -32,21 +33,22 @@ type Tweet {
 }
 
 // LOGIC
-function trendsMapper(json : JSON) : [Trend] {
-  return json.trends;
-}
+function trendsMapper(json : Collection<JSON>) : [Trend] {
+  return json.one().trends;
+} 
 
 function tweetsMapper(json : JSON) : [Tweet] {
   return json.results;
-}
+} 
 
 // SERVICE
 service Twitter {
   resource trends() : JSON {
-    uri = "http://api.twitter.com/1/trends.json"
+    uri = "https://api.twitter.com/1/trends/1.json"
     encoding = "jsonp"
+    method = "GET" 
     mapper = trendsMapper
-  }
+  } 
 
   resource search(query : String) : JSON {
     uri = "http://search.twitter.com/search.json?q=" + escape(query)
