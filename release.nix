@@ -161,9 +161,9 @@ let
         updatesites = [ "file://${jobs.updatesite}/site" ];
         installIUs = [ "org.mobl_lang.feature.feature.group" ];
         dontInstall = true;
-        
+        meta.maintainers = maindevelopers;
       };
-      meta.maintainers = maindevelopers;
+      
     };
 
   };
