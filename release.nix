@@ -5,7 +5,7 @@
 }: 
 let
   pkgs = import nixpkgs { system = "x86_64-linux" ; };
-
+  maindevelopers = ["chrismelman@hotmail.com"];
   jars = {
     aster = 
       pkgs.fetchurl {
@@ -115,7 +115,7 @@ let
         cp -v ${strategomix} utils/StrategoMix.def
         ensureDir $out/bin
       '';
-       meta.maintainers = ["chrismelman@hotmail.com"]
+       meta.maintainers = maindevelopers;
     };
 
     samples = {
@@ -148,7 +148,7 @@ let
         mkdir -p mobl/utils
         export LOCALCLASSPATH="utils/js.jar"
       '';
-      meta.maintainers = ["chrismelman@hotmail.com"]
+      meta.maintainers = maindevelopers;
     };
 
     tests = {
@@ -163,7 +163,7 @@ let
         dontInstall = true;
         
       };
-      meta.maintainers = ["chrismelman@hotmail.com"]
+      meta.maintainers = maindevelopers;
     };
 
   };
