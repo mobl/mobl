@@ -115,6 +115,7 @@ let
         cp -v ${strategomix} utils/StrategoMix.def
         ensureDir $out/bin
       '';
+       meta.maintainers = ["chrismelman@hotmail.com"]
     };
 
     samples = {
@@ -147,6 +148,7 @@ let
         mkdir -p mobl/utils
         export LOCALCLASSPATH="utils/js.jar"
       '';
+      meta.maintainers = ["chrismelman@hotmail.com"]
     };
 
     tests = {
@@ -158,27 +160,10 @@ let
         };
         updatesites = [ "file://${jobs.updatesite}/site" ];
         installIUs = [ "org.mobl_lang.feature.feature.group" ];
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         dontInstall = true;
+        
       };
+      meta.maintainers = ["chrismelman@hotmail.com"]
     };
 
   };
