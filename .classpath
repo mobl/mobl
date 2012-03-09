@@ -5,5 +5,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="lib" path="utils/yuicompressor.jar" sourcepath="/Users/zef/Downloads/yuicompressor-2.4.6/src"/>
+	<classpathentry kind="lib" path="utils/commons-codec-1.4.jar"/>
+	<classpathentry kind="lib" path="utils/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="utils/gson-2.1.jar"/>
+	<classpathentry kind="lib" path="utils/httpclient-4.1.3.jar"/>
+	<classpathentry kind="lib" path="utils/httpcore-4.1.4.jar"/>
+	<classpathentry kind="lib" path="utils/httpmime-4.1.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
