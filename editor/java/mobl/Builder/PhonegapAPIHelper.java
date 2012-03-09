@@ -1,3 +1,4 @@
+package mobl.Builder;
 /*
  * ====================================================================
  *
@@ -25,8 +26,6 @@
  */
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.rmi.ConnectException;
@@ -35,8 +34,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 import javax.activity.InvalidActivityException;
 import javax.naming.InvalidNameException;
@@ -141,7 +138,7 @@ public class PhonegapAPIHelper {
 
 	}
 
-	private void getBuildError(int id, String platform) throws NamingException,
+	public void getBuildError(int id, String platform) throws NamingException,
 			IllegalStateException, IOException {
 		if (!Arrays.asList(platforms).contains(platform)) {
 			throw new NamingException("unsupported platfom :" + platform);
@@ -178,7 +175,7 @@ public class PhonegapAPIHelper {
 
 	}
 
-	private void getApp(String name, int id, String platform) throws NamingException, ClientProtocolException, IOException {
+	public void getApp(String name, int id, String platform) throws NamingException, ClientProtocolException, IOException {
     	if(!Arrays.asList(platforms).contains(platform)){
     		throw new NamingException("unsupported platfom :" + platform);
     	}
@@ -204,7 +201,7 @@ public class PhonegapAPIHelper {
 
 	}
 
-	private Status checkBuildingStatusApp(int id, String platform)
+	public Status checkBuildingStatusApp(int id, String platform)
 			throws IllegalStateException, IOException, NamingException {
 		if (!Arrays.asList(platforms).contains(platform)) {
 			throw new NamingException("unsupported platfom :" + platform);
@@ -236,7 +233,7 @@ public class PhonegapAPIHelper {
 		}
 	}
 
-	private void updateAppSource(int id, String filelocation)
+	public void updateAppSource(int id, String filelocation)
 			throws InvalidNameException, ClientProtocolException, IOException {
 		File file = checkFile(filelocation);
 		HttpPut httpput = new HttpPut("https://build.phonegap.com/api/v1/apps/"
@@ -265,7 +262,7 @@ public class PhonegapAPIHelper {
 		}
 	}
 
-	private void createApp(String name, String filelocation)
+	public void createApp(String name, String filelocation)
 			throws InvalidNameException, ClientProtocolException, IOException {
 		File file = checkFile(filelocation);
 		HttpPost httppost = new HttpPost(
@@ -328,7 +325,7 @@ public class PhonegapAPIHelper {
 		return file;
 	}
 
-	private int getAppId(String name) throws ClientProtocolException,
+	public int getAppId(String name) throws ClientProtocolException,
 			IOException {
 		HttpGet httpget = new HttpGet("https://build.phonegap.com/api/v1/apps");
 		HttpResponse response = httpclient.execute(httpget);
@@ -358,7 +355,7 @@ public class PhonegapAPIHelper {
 
 	}
 
-	private void setCriedentials(String username, String password) {
+	public void setCriedentials(String username, String password) {
 		httpclient.getCredentialsProvider().setCredentials(
 				new AuthScope("build.phonegap.com", 443),
 				new UsernamePasswordCredentials(username, password));
@@ -413,51 +410,6 @@ public class PhonegapAPIHelper {
 		public Data(String title) {
 			super();
 			this.title = title;
-		}
-
-	}
-
-	private enum Status {
-		PENDING, COMPLETE, ERROR, NULL, INVALID
-
-	}
-
-	private static class ZipHelper {
-		public static void zipDir(String zipFileName, String dir)
-				throws Exception {
-			File dirFile = new File(dir);
-			ZipOutputStream zip = new ZipOutputStream(new FileOutputStream(
-					zipFileName));
-			addDirectory(dirFile, zip, dirFile.getPath());
-			zip.close();
-		}
-
-		private static void addDirectory(File dir, ZipOutputStream zip,
-				String removeDirpart) throws IOException {
-			File[] files = dir.listFiles();
-
-			for (File file : files) {
-				if (file.isDirectory()) {
-					addDirectory(file, zip, removeDirpart);
-				} else {
-					addFile(zip, file, removeDirpart);
-				}
-			}
-		}
-
-		private static void addFile(ZipOutputStream zip, File file,
-				String removeDirpart) throws IOException, FileNotFoundException {
-			byte[] Buf = new byte[1024];
-
-			zip.putNextEntry(new ZipEntry(file.getPath().replace(removeDirpart,
-					"")));
-			FileInputStream in = new FileInputStream(file);
-			int size = 0;
-			while ((size = in.read(Buf)) != -1) {
-				zip.write(Buf, 0, size);
-			}
-			in.close();
-			zip.closeEntry();
 		}
 
 	}
