@@ -21,6 +21,7 @@ builders
   //builder  : "Format code" = format-code (openeditor) (realtime)
   builder  : "Desugar"     = editor-desugar (openeditor) (realtime) (meta)
   builder  : "Release build" = editor-optimize
+   builder  : "Native build" = native-build
   builder  : "Remove build directories" = editor-clean-project
   builder  : "Rebuild project" = editor-rebuild-project
   builder  : "Generate init data migration" = editor-derive-migration (openeditor)

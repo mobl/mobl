@@ -16,9 +16,9 @@ import org.strategoxt.lang.Context;
 import org.strategoxt.lang.Strategy;
 
 
-public class buildOnCloud_0_0 extends Strategy {
+public class build$On$Cloud_0_0 extends Strategy {
 
-    public static buildOnCloud_0_0 instance = new buildOnCloud_0_0();
+    public static build$On$Cloud_0_0 instance = new build$On$Cloud_0_0();
 
     @Override
     public IStrategoTerm invoke(Context context, IStrategoTerm current) {
@@ -70,7 +70,8 @@ public class buildOnCloud_0_0 extends Strategy {
 						"username/password combination is invalid");
 			}
     	}catch (Exception e) {
-			e.printStackTrace();
+    		context.getIOAgent().printError(e.toString());
+			
 			return null;
 		}
 				

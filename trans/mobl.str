@@ -28,6 +28,7 @@ imports
   editor/editor
   util
   optimize/optimize
+  nativebuild
 
 strategies
 
