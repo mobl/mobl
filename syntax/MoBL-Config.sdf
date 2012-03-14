@@ -9,7 +9,9 @@ exports
   context-free syntax
 
     "configuration" Setting*         -> Start {cons("Configuration")}
-
+	"native" "{" NativeSetting* "}"	 -> Setting{cons("NativeSettings")}
+	"username" STRING				 -> NativeSetting{cons("buildfarmUsername")}
+	"password" STRING				 -> NativeSetting{cons("buildfarmPassword")}
     "title" STRING                   -> Setting {cons("TitleSetting")}
     "database" STRING                -> Setting {cons("DatabaseSetting")}
     "icon" Path                      -> Setting {cons("IconSetting")}
