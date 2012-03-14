@@ -140,6 +140,7 @@ completions
 
 completions
 
+
   completion template : Setting =
     "debug" (blank)
 
@@ -175,3 +176,16 @@ completions
 
   completion template : Setting =
     "style $" <baseColor> " = rgb(100, 100, 100)" (blank)
+    
+  completion template : Setting =
+    "native {\n" 
+	    "\tusername" <"username">"\n" 
+	    "\tpassword" <"password">"\n" 
+    "}"(blank)
+    
+  completion template : NativeSetting =
+  	"username" <"username"> (blank)
+  	
+  completion template : NativeSetting =
+  	"password" <"password"> (blank)
+  	
