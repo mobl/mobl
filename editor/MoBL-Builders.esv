@@ -11,9 +11,17 @@ builders
 
   //provider : include/mobl.ctree
   provider : include/mobl.jar
-
+  provider : utils/nativebuildPhonegap.jar
+ 
   provider : include/mobl-java.jar
   provider : utils/yuicompressor.jar
+  
+  provider : utils/httpcore-4.1.4.jar
+  provider : utils/httpclient-4.1.3.jar
+  provider : utils/httpmime-4.1.3.jar
+  provider : utils/gson-2.1.jar
+  provider : utils/commons-codec-1.4.jar
+  provider : utils/commons-logging-1.1.1.jar
 
   observer : editor-analyze
   on save  : generate-artifacts
