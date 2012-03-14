@@ -456,3 +456,9 @@ rules
                                       (this note is defined in trans/check.str) ])
 */
   constraint-note = fail
+  
+  constraint-error : e@NativeSettings(list) -> (e,$["Missing username for native build"])
+  	where not(<fetch-elem(?buildfarmUsername(_))>list)
+    
+   constraint-error : e@NativeSettings(list) -> (e,$["Missing password for native build"])
+  	where not(<fetch-elem(?buildfarmPassword(_))>list)

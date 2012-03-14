@@ -51,7 +51,15 @@ rules
       ; notes    := <collect-all(constraint-note, conc)> ast2
 
   editor-analyze:
-    (ast@Configuration(_), path, project-path) -> (ast, [], [], [])
+    (ast@Configuration(_), path, project-path) -> (ast, errors, warnings, notes)
+    with
+    errors   := <collect-all(constraint-error, conc)> ast
+      ; if not([] := errors) then
+          rules ( HasErrors := True() )
+          ; debug(!"Errors: ")
+        end
+      ; warnings := <collect-all(constraint-warning, conc)> ast
+      ; notes    := <collect-all(constraint-note, conc)> ast
 
   // Prints the abstract syntax ATerm of a selection.
   generate-aterm:
