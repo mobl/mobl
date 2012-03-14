@@ -1,0 +1,19 @@
+module nativebuild
+imports 
+	include/MoBL
+ 	lib/editor-common
+ 	util
+rules
+	external buildOnCloudf(|) 
+	
+	native-build:
+    (selected, position, ast, path, project-path) -> None()
+    with 
+    	rules ( ProjectPath     := project-path )
+    	; setting* := <get-configuration>
+    	; <fetch-elem(?HtmlSetting("index.html"))> setting*
+    	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
+    	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
+    	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
+    where  
+    <buildOnCloudf>project-path
