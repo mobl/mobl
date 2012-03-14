@@ -1,4 +1,4 @@
-package mobl.Builder;
+package PhoneGab.Builder;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,11 +17,12 @@ public class ZipHelper {
 		addDirectory(dirFile, zip, dirFile.getPath());
 		zip.close();
 	}
-
+ 
 	private static void addDirectory(File dir, ZipOutputStream zip,
 			String removeDirpart) throws IOException {
 		File[] files = dir.listFiles();
-
+		String x = new File(".").getAbsolutePath();
+		x = x.toLowerCase();
 		for (File file : files) {
 			if (file.isDirectory()) {
 				addDirectory(file, zip, removeDirpart);

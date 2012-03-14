@@ -1,4 +1,4 @@
-package mobl.Builder;
+package PhoneGab.Builder;
 /*
  * ====================================================================
  *
@@ -62,23 +62,28 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/**
+/** 
  * Example how to use multipart/form encoded POST request.
  */
 public class PhonegapAPIHelper {
 	private final class HashMapExtension extends HashMap<String, String> {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -5958277237132598851L;
+
 		{
 			put("android", "apk");
 			put("ios", "ipa");
 			put("blackberry", "jad");
-			put("symbian", "wgz");
+			put("symbian", "wgz"); 
 			put("webos", "ipk");
 		}
 	}
 
 	private DefaultHttpClient httpclient = new DefaultHttpClient();
 	private Gson gson = new Gson();
-	private JsonParser parser = new JsonParser();
+	private JsonParser parser = new JsonParser(); 
 	private final String[] platforms = { "android", "ios", "blackberry",
 			"symbian", "webos" };
 	private final Map<String, String> extensionMap = new HashMapExtension();
@@ -129,7 +134,7 @@ public class PhonegapAPIHelper {
 				throw new InvalidActivityException(
 						"Something interfered with the building process");
 			}
-			phonegap.getApp(name, id, platform);
+			phonegap.getApp(name, id, platform,".");
 
 		} else {
 			throw new AuthenticationException(
@@ -175,7 +180,7 @@ public class PhonegapAPIHelper {
 
 	}
 
-	public void getApp(String name, int id, String platform) throws NamingException, ClientProtocolException, IOException {
+	public void getApp(String name, int id, String platform, String path) throws NamingException, ClientProtocolException, IOException {
     	if(!Arrays.asList(platforms).contains(platform)){
     		throw new NamingException("unsupported platfom :" + platform);
     	}
@@ -190,11 +195,11 @@ public class PhonegapAPIHelper {
 			System.out.println(getJsonFromResponse(response).getAsJsonObject().get("error"));
 		 }
 		 else{
-			 File file = new File("nativejava/" + platform + "/");
+			 File file = new File(path+"/nativejava/" + platform + "/");
 			 if(!file.exists()){
 				 file.mkdirs();
 			 }
-			 file = new File("nativejava/" + platform + "/"+ name + "." +extensionMap.get(platform) );
+			 file = new File(path + "/nativejava/" + platform + "/"+ name + "." +extensionMap.get(platform) );
 			 response.getEntity().writeTo(new FileOutputStream(file));
 			 
 		 }
@@ -298,6 +303,7 @@ public class PhonegapAPIHelper {
 
 	}
 
+	@SuppressWarnings("unused")
 	private void printResponse(HttpResponse response) throws IOException {
 		HttpEntity resEntity = response.getEntity();
 		System.out.println(response.getStatusLine());
@@ -342,7 +348,7 @@ public class PhonegapAPIHelper {
 					.get("error"));
 			throw new ConnectException("Could not connect to the server");
 		} else {
-			JsonArray apps = getJsonFromResponse(response).getAsJsonObject()
+			JsonArray apps = getJsonFromResponse(response).getAsJsonObject() 
 					.get("apps").getAsJsonArray();
 			for (int i = 0; i < apps.size(); i++) {
 				if (apps.get(i).getAsJsonObject().get("title").getAsString()
@@ -390,7 +396,7 @@ public class PhonegapAPIHelper {
 			throws IllegalStateException, IOException {
 		JsonElement json = null;
 		if (response.getEntity() != null) {
-			Scanner x = new Scanner(response.getEntity().getContent());
+			Scanner x = new Scanner(response.getEntity().getContent()); 
 			if (x.hasNextLine()) {
 				json = parser.parse(x.nextLine());
 			}
@@ -403,11 +409,14 @@ public class PhonegapAPIHelper {
 	}
 
 	private class Data {
+		@SuppressWarnings("unused")
 		private String create_method = "file";
+		@SuppressWarnings("unused")
 		private String title = "test";
+		@SuppressWarnings("unused")
 		private String version = "1.0";
-
-		public Data(String title) {
+   
+		public Data(String title) { 
 			super();
 			this.title = title;
 		}
