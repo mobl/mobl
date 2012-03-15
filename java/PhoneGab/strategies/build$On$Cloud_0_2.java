@@ -41,14 +41,14 @@ public class build$On$Cloud_0_2 extends Strategy {
 			    	monitor.beginTask("native build", 100);
 				 	try{	
 				    	String name = "blaat";
-						File dir = new File(path+"/nativejava/zip/");
+						File dir = new File(path+"/native/zip/");
 						if (!dir.exists()) { 
 							dir.mkdirs();
 						} 
 						monitor.worked(1);
 						monitor.subTask("zippig dir");
 						context.getIOAgent().printError("zipping dir");
-						ZipHelper.zipDir(path+"/nativejava/zip/" + name + ".zip", path+"/nativejava/src/.");
+						ZipHelper.zipDir(path+"/native/zip/" + name + ".zip", path+"/native/src/.");
 						monitor.worked(14);
 						PhonegapAPIHelper phonegap = new PhonegapAPIHelper();
 						monitor.subTask("checking Credentials");
@@ -61,7 +61,7 @@ public class build$On$Cloud_0_2 extends Strategy {
 							context.getIOAgent().printError("get Application ID");
 							int id = phonegap.getAppId(name);
 							monitor.worked(10);
-							String filelocation =path+"/nativejava/zip/" + name + ".zip";
+							String filelocation =path+"/native/zip/" + name + ".zip";
 							if (id == -1) {
 								monitor.subTask("Create New Application");
 								context.getIOAgent().printError("Create New Application");

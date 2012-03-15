@@ -195,11 +195,11 @@ public class PhonegapAPIHelper {
 			System.out.println(getJsonFromResponse(response).getAsJsonObject().get("error"));
 		 }
 		 else{
-			 File file = new File(path+"/nativejava/" + platform + "/");
+			 File file = new File(path+"/native/" + platform + "/");
 			 if(!file.exists()){
 				 file.mkdirs();
 			 }
-			 file = new File(path + "/nativejava/" + platform + "/"+ name + "." +extensionMap.get(platform) );
+			 file = new File(path + "/native/" + platform + "/"+ name + "." +extensionMap.get(platform) );
 			 response.getEntity().writeTo(new FileOutputStream(file));
 			 
 		 }
