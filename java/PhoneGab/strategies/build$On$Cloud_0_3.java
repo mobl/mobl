@@ -25,22 +25,23 @@ import PhoneGab.Builder.Status;
 import PhoneGab.Builder.ZipHelper;
 
 
-public class build$On$Cloud_0_2 extends Strategy {  
+public class build$On$Cloud_0_3 extends Strategy {  
 
-    public static build$On$Cloud_0_2 instance = new build$On$Cloud_0_2();
+    public static build$On$Cloud_0_3 instance = new build$On$Cloud_0_3();
      
     @Override
-    public IStrategoTerm invoke(final Context context,  final IStrategoTerm current, final IStrategoTerm usernameTerm, final IStrategoTerm passwordTerm) {
+    public IStrategoTerm invoke(final Context context,  final IStrategoTerm current, final IStrategoTerm usernameTerm, final IStrategoTerm passwordTerm, final IStrategoTerm appnameTerm) {
     	Job job = new Job("native build") {
     		 String path = uglify_0_0.getStringFromTerm(current);
 			 String username = uglify_0_0.getStringFromTerm(usernameTerm);
 			 String password = uglify_0_0.getStringFromTerm(passwordTerm);
+			 String appname = uglify_0_0.getStringFromTerm(appnameTerm);
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				
 			    	monitor.beginTask("native build", 100);
 				 	try{	
-				    	String name = "blaat";
+//				    	String name = "blaat";
 						File dir = new File(path+"/native/zip/");
 						if (!dir.exists()) { 
 							dir.mkdirs();
@@ -48,7 +49,7 @@ public class build$On$Cloud_0_2 extends Strategy {
 						monitor.worked(1);
 						monitor.subTask("zippig dir");
 						context.getIOAgent().printError("zipping dir");
-						ZipHelper.zipDir(path+"/native/zip/" + name + ".zip", path+"/native/src/.");
+						ZipHelper.zipDir(path+"/native/zip/" + appname + ".zip", path+"/native/src/.");
 						monitor.worked(14);
 						PhonegapAPIHelper phonegap = new PhonegapAPIHelper();
 						monitor.subTask("checking Credentials");
@@ -59,13 +60,13 @@ public class build$On$Cloud_0_2 extends Strategy {
 							context.getIOAgent().printError("Ok");
 							monitor.subTask("get Application ID");
 							context.getIOAgent().printError("get Application ID");
-							int id = phonegap.getAppId(name);
+							int id = phonegap.getAppId(appname);
 							monitor.worked(10);
-							String filelocation =path+"/native/zip/" + name + ".zip";
+							String filelocation =path+"/native/zip/" + appname + ".zip";
 							if (id == -1) {
 								monitor.subTask("Create New Application");
 								context.getIOAgent().printError("Create New Application");
-								phonegap.createApp(name, filelocation);
+								phonegap.createApp(appname, filelocation);
 								monitor.worked(15);
 							} else {
 								monitor.subTask("Update Source");
@@ -79,6 +80,7 @@ public class build$On$Cloud_0_2 extends Strategy {
 							monitor.subTask("Start Building");
 							monitor.worked(1);
 							monitor.subTask("build pending");
+							Thread.sleep(1000);
 							while (phonegap.checkBuildingStatusApp(id, platform).equals(
 									Status.PENDING)&&!monitor.isCanceled()) {
 //								System.out.println(platform + " build pending (" + seconds
@@ -111,7 +113,7 @@ public class build$On$Cloud_0_2 extends Strategy {
 							}
 							
 							context.getIOAgent().printError("downloadingfile");
-							phonegap.getApp(name, id, platform,path);
+							phonegap.getApp(appname, id, platform,path);
 							monitor.worked(15);
 						} else {
 							throw new AuthenticationException(
