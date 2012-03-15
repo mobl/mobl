@@ -4,6 +4,7 @@ imports
  	lib/editor-common
  	util
  	generation/compile
+ 	editor/editor
 rules
 	external buildOnCloud(|username,password) 
 	
@@ -15,6 +16,7 @@ rules
     	rules ( ProjectPath     := project-path  
     			Native := True() 
     			CachedParseAst  : path -> ast )
+    	; try(<deltree> $[[project-path]/native/src]	)	
     	; setting* := <get-configuration>
     	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
     	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
@@ -23,8 +25,9 @@ rules
         ; Application(mod-name, _) := ast 
         ; rules ( CompilingModule := mod-name )
         ; <compile> ast
- 	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password)>project-path)
+ 	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password)>project-path)  
  	    ; where(<refresh-workspace-file> $[[project-path]/native/])
+ 	      
     	|} 
    
     

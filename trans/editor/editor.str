@@ -157,6 +157,9 @@ rules
           ; if <file-exists> <ReleaseOutputPath> then
               <deltree> <ReleaseOutputPath>
             end
+            ; if <file-exists> $[[project-path]/native/] then
+              <deltree>  $[[project-path]/native/] 
+            end
           ; <refresh-workspace-file> <ProjectPath>
        )
 
