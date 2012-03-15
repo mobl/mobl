@@ -6,6 +6,7 @@ imports
   lib/editor-common
   generation/action
   mobl
+  nativebuild
 
 rules
 
@@ -50,6 +51,10 @@ rules
     where filename := <get-configuration-filename>
     where <file-exists> filename
     with Configuration(setting*) := <parse-file <+ !Configuration([])> filename
+    with 
+    	if (<native> setting* ) then
+    		<configure-native-settings>setting*
+    	end
 
   get-configuration :
     _ -> []

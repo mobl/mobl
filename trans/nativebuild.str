@@ -8,12 +8,29 @@ rules
 	
 	native-build:
     (selected, position, ast, path, project-path) -> None()
-    with 
-    	rules ( ProjectPath     := project-path )
+    with {| native: 
+    	rules ( ProjectPath     := project-path 
+    			native: 		x -> x )
     	; setting* := <get-configuration>
-    	; <fetch-elem(?HtmlSetting("index.html"))> setting*
     	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
     	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
-    	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
-    where  
-    <buildOnCloudf>project-path
+    	; buildfarmPassword(password) := <fetch-elem(?buildfarmPassword(_))>nativesettings
+ 	    ; where(<buildOnCloudf>project-path)
+    	|}
+   
+    
+    
+    configure-native-settings: setting* -> newsetting*
+    where 
+    	if(<fetch(?HtmlSetting(_))>setting*) 
+    		then setting2* := <map(try(replace-html))>setting* 
+    		else setting2* := [HtmlSetting("index.html")|setting*]
+    	end; 
+    	if(<fetch(?HtmlSetting(_))>setting*) 
+    		then newsetting* := <map(try(replace-output))>setting2* 
+    		else newsetting* := [OutputSetting($["./native/src"])|setting2*]
+    	end	
+
+    replace-html: HtmlSetting(t) -> HtmlSetting("index.html")
+    
+    replace-output: OutputSetting(t) ->  OutputSetting($["./native/src"])
