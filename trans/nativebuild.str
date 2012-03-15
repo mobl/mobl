@@ -4,29 +4,29 @@ imports
  	lib/editor-common
  	util
 rules
-	external buildOnCloudf(|) 
+	external buildOnCloud(|username,password) 
 	
 	native-build:
     (selected, position, ast, path, project-path) -> None()
     with {| native: 
-    	rules ( ProjectPath     := project-path 
+    	rules ( ProjectPath     := project-path  
     			native: 		x -> x )
     	; setting* := <get-configuration>
     	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
     	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
     	; buildfarmPassword(password) := <fetch-elem(?buildfarmPassword(_))>nativesettings
- 	    ; where(<buildOnCloudf>project-path)
-    	|}
+ 	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password)>project-path)
+    	|} 
    
     
     
-    configure-native-settings: setting* -> newsetting*
+    configure-native-settings: setting* -> newsetting* 
     where 
     	if(<fetch(?HtmlSetting(_))>setting*) 
     		then setting2* := <map(try(replace-html))>setting* 
     		else setting2* := [HtmlSetting("index.html")|setting*]
     	end; 
-    	if(<fetch(?HtmlSetting(_))>setting*) 
+    	if(<fetch(?HtmlSetting(_))>setting*)  
     		then newsetting* := <map(try(replace-output))>setting2* 
     		else newsetting* := [OutputSetting($["./native/src"])|setting2*]
     	end	

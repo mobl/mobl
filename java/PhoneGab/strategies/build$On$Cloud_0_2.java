@@ -10,6 +10,7 @@ import javax.security.sasl.AuthenticationException;
 
 
 import mobl.Activator;
+import mobl.strategies.uglify_0_0;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -24,17 +25,19 @@ import PhoneGab.Builder.Status;
 import PhoneGab.Builder.ZipHelper;
 
 
-public class build$On$Cloudf_0_0 extends Strategy {  
+public class build$On$Cloud_0_2 extends Strategy {  
 
-    public static build$On$Cloudf_0_0 instance = new build$On$Cloudf_0_0();
+    public static build$On$Cloud_0_2 instance = new build$On$Cloud_0_2();
      
     @Override
-    public IStrategoTerm invoke(final Context context, final IStrategoTerm current) {
+    public IStrategoTerm invoke(final Context context,  final IStrategoTerm current, final IStrategoTerm usernameTerm, final IStrategoTerm passwordTerm) {
     	Job job = new Job("native build") {
-			
+    		 String path = uglify_0_0.getStringFromTerm(current);
+			 String username = uglify_0_0.getStringFromTerm(usernameTerm);
+			 String password = uglify_0_0.getStringFromTerm(passwordTerm);
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				 String path = uglify_0_0.getStringFromTerm(current);
+				
 			    	monitor.beginTask("native build", 100);
 				 	try{	
 				    	String name = "blaat";
@@ -49,7 +52,7 @@ public class build$On$Cloudf_0_0 extends Strategy {
 						monitor.worked(14);
 						PhonegapAPIHelper phonegap = new PhonegapAPIHelper();
 						monitor.subTask("checking Credentials");
-						phonegap.setCriedentials("chrismelman@hotmail.com", "weetikveel");
+						phonegap.setCriedentials(username,password);
 						context.getIOAgent().printError("checking Credentials");
 						if (phonegap.TryAuthenticate()) {
 							monitor.worked(10);

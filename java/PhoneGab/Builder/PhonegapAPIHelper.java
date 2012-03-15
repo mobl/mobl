@@ -207,9 +207,9 @@ public class PhonegapAPIHelper {
 	}
 
 	public Status checkBuildingStatusApp(int id, String platform)
-			throws IllegalStateException, IOException, NamingException {
+			throws IllegalStateException, IOException {
 		if (!Arrays.asList(platforms).contains(platform)) {
-			throw new NamingException("unsupported platfom :" + platform);
+			throw new InvalidParameterException("unsupported platfom :" + platform);
 		}
 
 		HttpGet httpget = new HttpGet("https://build.phonegap.com/api/v1/apps/"
@@ -324,7 +324,7 @@ public class PhonegapAPIHelper {
 				|| !(file.getName().equals("index.html")
 						|| file.getName().endsWith(".zip") || file.getName()
 						.endsWith(".tar.gz"))) {
-			throw new InvalidNameException(
+			throw new InvalidParameterException(
 					"the file should be a zip/tar.gz file or index.html instead of: "
 							+ file.getName());
 		}
