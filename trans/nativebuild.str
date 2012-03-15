@@ -3,19 +3,28 @@ imports
 	include/MoBL
  	lib/editor-common
  	util
+ 	generation/compile
 rules
 	external buildOnCloud(|username,password) 
 	
 	native-build:
     (selected, position, ast, path, project-path) -> None()
-    with {| native: 
+    with try(dr-scope-all-end)
+      ; dr-scope-all-start
+    with {| Native: 
     	rules ( ProjectPath     := project-path  
-    			native: 		x -> x )
+    			Native := True() 
+    			CachedParseAst  : path -> ast )
     	; setting* := <get-configuration>
     	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
     	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
     	; buildfarmPassword(password) := <fetch-elem(?buildfarmPassword(_))>nativesettings
+        ; setup-paths
+        ; Application(mod-name, _) := ast 
+        ; rules ( CompilingModule := mod-name )
+        ; <compile> ast
  	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password)>project-path)
+ 	    ; where(<refresh-workspace-file> $[[project-path]/native/])
     	|} 
    
     

@@ -50,10 +50,11 @@ rules
     _ -> setting*
     where filename := <get-configuration-filename>
     where <file-exists> filename
-    with Configuration(setting*) := <parse-file <+ !Configuration([])> filename
-    with 
-    	if (<native> setting* ) then
-    		<configure-native-settings>setting*
+    with Configuration(setting2) := <parse-file <+ !Configuration([])> filename
+    where 
+    	if (Native) then
+    		setting* := <configure-native-settings>setting2
+    		else setting*:= setting2
     	end
 
   get-configuration :

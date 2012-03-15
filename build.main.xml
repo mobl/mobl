@@ -126,6 +126,6 @@
     </jar>
   </target>
 	<target name="jar-phonegab">
-		<jar basedir="${phonegap-bin}" includes="**" destfile="utils/nativebuildPhonegap.jar"/>
+		<jar basedir="${phonegap-bin}" includes="**" destfile="utils/nativebuildPhonegap.jar" update="true"/>
 	</target>
 </project>
