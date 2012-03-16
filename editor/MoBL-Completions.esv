@@ -179,8 +179,9 @@ completions
     
   completion template : Setting =
     "native {\n" 
-	    "\tusername" <"username">"\n" 
-	    "\tpassword" <"password">"\n" 
+	    "\tusername " <"username">"\n" 
+	    "\tpassword " <"password">"\n" 
+	    "platforms " <android, blackberry, symbian, webos, ios>"\n"
     "}"(blank)
     
   completion template : NativeSetting =
@@ -189,3 +190,20 @@ completions
   completion template : NativeSetting =
   	"password" <"password"> (blank)
   	
+  completion template : NativeSetting =
+  	"platforms " <android, blackberry, symbian, webos, ios> (blank)
+  
+  completion template PLATFORM :
+  	"ios"
+  
+  completion template PLATFORM :
+  	"symbian"
+  
+  completion template PLATFORM :
+  	"blackberry"
+  
+  completion template PLATFORM :
+  	"android"
+  
+  completion template PLATFORM :
+  	"webos"		
