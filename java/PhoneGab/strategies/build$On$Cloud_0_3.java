@@ -41,7 +41,6 @@ public class build$On$Cloud_0_3 extends Strategy {
 				
 			    	monitor.beginTask("native build", 100);
 				 	try{	
-//				    	String name = "blaat";
 						File dir = new File(path+"/native/zip/");
 						if (!dir.exists()) { 
 							dir.mkdirs();
@@ -51,18 +50,18 @@ public class build$On$Cloud_0_3 extends Strategy {
 						monitor.subTask("zippig dir");
 						context.getIOAgent().printError("zipping dir");
 						ZipHelper.zipDir(path+"/native/zip/" + appname + ".zip", path+"/native/src/.");
-						monitor.worked(14);
+						monitor.worked(9);
 						PhonegapAPIHelper phonegap = new PhonegapAPIHelper();
 						monitor.subTask("checking Credentials");
 						phonegap.setCriedentials(username,password);
 						context.getIOAgent().printError("checking Credentials");
 						if (phonegap.TryAuthenticate()) {
-							monitor.worked(10);
+							monitor.worked(5);
 							context.getIOAgent().printError("Ok");
 							monitor.subTask("get Application ID");
 							context.getIOAgent().printError("get Application ID");
 							int id = phonegap.getAppId(appname);
-							monitor.worked(10);
+							monitor.worked(5);
 							String filelocation =path+"/native/zip/" + appname + ".zip";
 							if (id == -1) {
 								monitor.subTask("Create New Application");
@@ -79,8 +78,10 @@ public class build$On$Cloud_0_3 extends Strategy {
 							String[] platforms =  { "android", "blackberry",
 									"symbian", "webos" };
 							monitor.worked(1);
+							int restBuild = 38;
+							int restDownload = 20;
+							int i = platforms.length;
 							for(String platform: platforms){
-//							String platform = "android";
 								int seconds = 1;
 								context.getIOAgent().printError("Start Building");
 								monitor.subTask("Start Building");
@@ -88,8 +89,6 @@ public class build$On$Cloud_0_3 extends Strategy {
 								monitor.subTask("build pending");
 								while (phonegap.checkBuildingStatusApp(id, platform).equals(
 										Status.PENDING)&&!monitor.isCanceled()) {
-	//								System.out.println(platform + " build pending (" + seconds
-	//										+ "s)");
 									context.getIOAgent().printError(platform + " build pending (" + seconds
 											+ "s)");
 									monitor.subTask(platform + " build pending (" + seconds
@@ -102,7 +101,8 @@ public class build$On$Cloud_0_3 extends Strategy {
 							        return new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.Status.CANCEL, Activator.kPluginID,"job canceled by user");
 								}
 								monitor.subTask("completed Building");
-							
+								monitor.worked(restBuild/i);
+								restBuild = restBuild-(restBuild/i);
 								switch (phonegap.checkBuildingStatusApp(id, platform)) {
 								case COMPLETE:
 									break;
@@ -119,10 +119,12 @@ public class build$On$Cloud_0_3 extends Strategy {
 								monitor.subTask("downloading file for "+ platform);
 								context.getIOAgent().printError("downloading file " + platform);
 								phonegap.getApp(appname, id, platform,path);
-								
+								monitor.worked(restDownload/i);
+								restDownload = restDownload-(restDownload/i);
+								i--;
 							}
-							monitor.worked(29);
-							monitor.worked(15);
+//							monitor.worked(29);
+//							monitor.worked(15);
 						} else {
 							throw new AuthenticationException(
 									"username/password combination is invalid");
@@ -136,8 +138,6 @@ public class build$On$Cloud_0_3 extends Strategy {
 			    	finally{
 			    		monitor.done();
 			    	}
-							;
-						
 			        return new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.Status.OK, Activator.kPluginID,"job finished succesfully");
 			    }
  
