@@ -14,9 +14,11 @@ rules
       ; dr-scope-all-start
     with {| Native: 
     	rules ( ProjectPath     := project-path  
-    			Native := True() 
+    			Native := True()  
     			CachedParseAst  : path -> ast )
-    	; try(<deltree> $[[project-path]/native/src]	)	
+    	; try(if <file-exists> $[[project-path]/native/] then
+              <deltree>  $[[project-path]/native/] 
+            end)
     	; setting* := <get-configuration>
     	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
     	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
@@ -25,10 +27,11 @@ rules
         ; Application(mod-name, _) := ast 
         ; rules ( CompilingModule := mod-name )
         ; <compile> ast
+        // ;<call>("sleep",["1"])  
  	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password,mod-name)>project-path)  
  	    ; where(<refresh-workspace-file> $[[project-path]/native/])
  	      
-    	|} 
+    	|}  
    
     
     

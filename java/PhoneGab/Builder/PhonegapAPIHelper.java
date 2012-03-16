@@ -109,6 +109,7 @@ public class PhonegapAPIHelper {
 			String filelocation = "draw.zip";
 			if (id == -1) {
 				phonegap.createApp(name, filelocation);
+				id = phonegap.getAppId(name);
 			} else {
 				phonegap.updateAppSource(id, filelocation);
 			}

@@ -46,6 +46,7 @@ public class build$On$Cloud_0_3 extends Strategy {
 						if (!dir.exists()) { 
 							dir.mkdirs();
 						} 
+						
 						monitor.worked(1);
 						monitor.subTask("zippig dir");
 						context.getIOAgent().printError("zipping dir");
@@ -67,6 +68,7 @@ public class build$On$Cloud_0_3 extends Strategy {
 								monitor.subTask("Create New Application");
 								context.getIOAgent().printError("Create New Application");
 								phonegap.createApp(appname, filelocation);
+								id = phonegap.getAppId(appname);
 								monitor.worked(15);
 							} else {
 								monitor.subTask("Update Source");
@@ -80,7 +82,6 @@ public class build$On$Cloud_0_3 extends Strategy {
 							monitor.subTask("Start Building");
 							monitor.worked(1);
 							monitor.subTask("build pending");
-							Thread.sleep(1000);
 							while (phonegap.checkBuildingStatusApp(id, platform).equals(
 									Status.PENDING)&&!monitor.isCanceled()) {
 //								System.out.println(platform + " build pending (" + seconds
