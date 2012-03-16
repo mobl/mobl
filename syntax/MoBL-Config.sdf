@@ -35,5 +35,5 @@ exports
     "ios"	  		-> PLATFORM
     "blackberry" 	-> PLATFORM
     "symbian"	  	-> PLATFORM
-    "ios"	  		-> PLATFORM
+    "webos"	  		-> PLATFORM
     
