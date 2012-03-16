@@ -3,6 +3,7 @@ package PhoneGab.strategies;
 
 import java.io.File;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 
 import javax.activity.InvalidActivityException;
 import javax.security.sasl.AuthenticationException;
@@ -25,17 +26,23 @@ import PhoneGab.Builder.Status;
 import PhoneGab.Builder.ZipHelper;
 
 
-public class build$On$Cloud_0_3 extends Strategy {  
+public class build$On$Cloud_0_4 extends Strategy {  
 
-    public static build$On$Cloud_0_3 instance = new build$On$Cloud_0_3();
+    public static build$On$Cloud_0_4 instance = new build$On$Cloud_0_4();
      
     @Override
-    public IStrategoTerm invoke(final Context context,  final IStrategoTerm current, final IStrategoTerm usernameTerm, final IStrategoTerm passwordTerm, final IStrategoTerm appnameTerm) {
+    public IStrategoTerm invoke( final Context context,   IStrategoTerm current,  IStrategoTerm usernameTerm,  IStrategoTerm passwordTerm,  IStrategoTerm appnameTerm,  IStrategoTerm platformsTerm) {
+    	 final String path = uglify_0_0.getStringFromTerm(current);
+		 final String username = uglify_0_0.getStringFromTerm(usernameTerm);
+		 final String password = uglify_0_0.getStringFromTerm(passwordTerm);
+		 final String appname = uglify_0_0.getStringFromTerm(appnameTerm);
+		 final ArrayList<String> platforms = new ArrayList<String>();
+		 for (IStrategoTerm term: platformsTerm.getAllSubterms()){
+			 platforms.add(uglify_0_0.getStringFromTerm(term));
+		 }
     	Job job = new Job("native build") {
-    		 String path = uglify_0_0.getStringFromTerm(current);
-			 String username = uglify_0_0.getStringFromTerm(usernameTerm);
-			 String password = uglify_0_0.getStringFromTerm(passwordTerm);
-			 String appname = uglify_0_0.getStringFromTerm(appnameTerm);
+    		
+			 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				
@@ -75,12 +82,12 @@ public class build$On$Cloud_0_3 extends Strategy {
 								phonegap.updateAppSource(id, filelocation);
 								monitor.worked(15);
 							}
-							String[] platforms =  { "android", "blackberry",
-									"symbian", "webos" };
+//							String[] platforms =  { "android", "blackberry",
+//									"symbian", "webos" };
 							monitor.worked(1);
 							int restBuild = 38;
 							int restDownload = 20;
-							int i = platforms.length;
+							int i = platforms.size();
 							for(String platform: platforms){
 								int seconds = 1;
 								context.getIOAgent().printError("Start Building");

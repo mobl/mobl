@@ -6,7 +6,7 @@ imports
  	generation/compile
  	editor/editor
 rules
-	external buildOnCloud(|username,password,appname) 
+	external buildOnCloud(|username,password,appname,platforms) 
 	
 	native-build:
     (selected, position, ast, path, project-path) -> None()
@@ -23,11 +23,12 @@ rules
     	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
     	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
     	; buildfarmPassword(password) := <fetch-elem(?buildfarmPassword(_))>nativesettings
+    	; buildfarmPlatforms(platforms) := <fetch-elem(?buildfarmPlatforms(_))>nativesettings
         ; setup-paths
         ; Application(mod-name, _) := ast 
         ; rules ( CompilingModule := mod-name )
         ; <compile> ast
- 	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password,mod-name)>project-path)  
+ 	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password,mod-name,<uniq>platforms)>project-path)  
  	    ; where(<refresh-workspace-file> $[[project-path]/native/])
  	      
     	|}  
