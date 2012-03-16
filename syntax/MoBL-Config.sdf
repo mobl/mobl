@@ -5,7 +5,8 @@ imports
   MoBL
 
 exports
-
+sorts
+	PLATFORM
   context-free syntax
 
     "configuration" Setting*         -> Start {cons("Configuration")}
