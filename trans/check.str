@@ -462,3 +462,6 @@ rules
     
    constraint-error : e@NativeSettings(list) -> (e,$["Missing password for native build"])
   	where not(<fetch-elem(?buildfarmPassword(_))>list)
+  	
+  	constraint-error : e@NativeSettings(list) -> (e,$["Missing platforms for native build"])
+  	where not(<fetch-elem(?buildfarmPlatforms(_))>list)
