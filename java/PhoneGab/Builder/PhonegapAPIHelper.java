@@ -164,11 +164,11 @@ public class PhonegapAPIHelper {
 			System.out.println(asJsonObject.get("error"));
 
 			throw new AuthenticationException(
-					"username/password combination is invalid");
+					"username/password combination is invalid "+ asJsonObject.get("error").toString() );
 
 		} else if (response.getStatusLine().getStatusCode() != 200) {
 			System.out.println(asJsonObject.get("error"));
-			throw new ConnectException("Could not connect to the server");
+			throw new ConnectException("Could not connect to the server " + asJsonObject.get("error").toString());
 		} else if (asJsonObject.get("error").getAsJsonObject().has(platform)) {
 			System.out.println(asJsonObject.get("error").getAsJsonObject()
 					.get(platform));
@@ -228,7 +228,7 @@ public class PhonegapAPIHelper {
 			return Status.INVALID;
 		} else if (response.getStatusLine().getStatusCode() != 200) {
 			System.out.println(asJsonObject.get("error"));
-			throw new ConnectException("Could not connect to the server");
+			throw new ConnectException("Could not connect to the server:" + asJsonObject.get("error").toString() );
 		} else if (asJsonObject.get("status").getAsJsonObject().get(platform)
 				.isJsonNull()) {
 			return Status.NULL;

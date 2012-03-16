@@ -27,7 +27,6 @@ rules
         ; Application(mod-name, _) := ast 
         ; rules ( CompilingModule := mod-name )
         ; <compile> ast
-        // ;<call>("sleep",["1"])  
  	    ; where(<buildOnCloud(|<un-double-quote>username,<un-double-quote>password,mod-name)>project-path)  
  	    ; where(<refresh-workspace-file> $[[project-path]/native/])
  	      

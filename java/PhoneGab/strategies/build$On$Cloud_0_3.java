@@ -76,45 +76,52 @@ public class build$On$Cloud_0_3 extends Strategy {
 								phonegap.updateAppSource(id, filelocation);
 								monitor.worked(15);
 							}
-							String platform = "android";
-							int seconds = 1;
-							context.getIOAgent().printError("Start Building");
-							monitor.subTask("Start Building");
+							String[] platforms =  { "android", "blackberry",
+									"symbian", "webos" };
 							monitor.worked(1);
-							monitor.subTask("build pending");
-							while (phonegap.checkBuildingStatusApp(id, platform).equals(
-									Status.PENDING)&&!monitor.isCanceled()) {
-//								System.out.println(platform + " build pending (" + seconds
-//										+ "s)");
-//								context.getIOAgent().printError(platform + " build pending (" + seconds
-//										+ "s)");
-								monitor.subTask(platform + " build pending (" + seconds
-										+ "s)");
-								Thread.sleep(1000 * Math.min(seconds, 10));
-								seconds += Math.min(seconds, 10);
+							for(String platform: platforms){
+//							String platform = "android";
+								int seconds = 1;
+								context.getIOAgent().printError("Start Building");
+								monitor.subTask("Start Building");
+								
+								monitor.subTask("build pending");
+								while (phonegap.checkBuildingStatusApp(id, platform).equals(
+										Status.PENDING)&&!monitor.isCanceled()) {
+	//								System.out.println(platform + " build pending (" + seconds
+	//										+ "s)");
+									context.getIOAgent().printError(platform + " build pending (" + seconds
+											+ "s)");
+									monitor.subTask(platform + " build pending (" + seconds
+											+ "s)");
+									Thread.sleep(1000 * Math.min(seconds, 10));
+									seconds += Math.min(seconds, 10);
+									
+								}
+								if (monitor.isCanceled()){
+							        return new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.Status.CANCEL, Activator.kPluginID,"job canceled by user");
+								}
+								monitor.subTask("completed Building");
+							
+								switch (phonegap.checkBuildingStatusApp(id, platform)) {
+								case COMPLETE:
+									break;
+								case ERROR:
+									phonegap.getBuildError(id, platform);
+									break;
+								case NULL:
+									throw new InvalidParameterException(
+											"probably the platform doesn't have a good key for building");
+								default:
+									throw new InvalidActivityException(
+											"Something interfered with the building process");
+								}
+								monitor.subTask("downloading file for "+ platform);
+								context.getIOAgent().printError("downloading file " + platform);
+								phonegap.getApp(appname, id, platform,path);
 								
 							}
-							if (monitor.isCanceled()){
-						        return new org.eclipse.core.runtime.Status(org.eclipse.core.runtime.Status.CANCEL, Activator.kPluginID,"job canceled by user");
-							}
-							monitor.subTask("completed Building");
 							monitor.worked(29);
-							switch (phonegap.checkBuildingStatusApp(id, platform)) {
-							case COMPLETE:
-								break;
-							case ERROR:
-								phonegap.getBuildError(id, platform);
-								break;
-							case NULL:
-								throw new InvalidParameterException(
-										"probably the platform doesn't have a good key for building");
-							default:
-								throw new InvalidActivityException(
-										"Something interfered with the building process");
-							}
-							
-							context.getIOAgent().printError("downloadingfile");
-							phonegap.getApp(appname, id, platform,path);
 							monitor.worked(15);
 						} else {
 							throw new AuthenticationException(
