@@ -1,29 +1,5 @@
 package PhoneGab.Builder;
-/*
- * ====================================================================
- *
- *  Licensed to the Apache Software Foundation (ASF) under one or more
- *  contributor license agreements.  See the NOTICE file distributed with
- *  this work for additional information regarding copyright ownership.
- *  The ASF licenses this file to You under the Apache License, Version 2.0
- *  (the "License"); you may not use this file except in compliance with
- *  the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- * ====================================================================
- *
- * This software consists of voluntary contributions made by many
- * individuals on behalf of the Apache Software Foundation.  For more
- * information on the Apache Software Foundation, please see
- * <http://www.apache.org/>.
- * 
- */
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import javax.activity.InvalidActivityException;
 import javax.naming.InvalidNameException;
 import javax.naming.NamingException;
 import javax.security.sasl.AuthenticationException;
@@ -62,14 +37,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-/** 
- * Example how to use multipart/form encoded POST request.
- */
 public class PhonegapAPIHelper {
 	private final class HashMapExtension extends HashMap<String, String> {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = -5958277237132598851L;
 
 		{
@@ -90,58 +60,6 @@ public class PhonegapAPIHelper {
 
 	public PhonegapAPIHelper() {
 		super();
-	}
-
-	public static void main(String[] args) throws Exception {
-
-		String name = "blaat";
-		File dir = new File("nativejava/zip/");
-		if (!dir.exists()) {
-			dir.mkdirs();
-		}
-		ZipHelper.zipDir("nativejava/zip/" + name + ".zip", "nativejava/src/.");
-
-		PhonegapAPIHelper phonegap = new PhonegapAPIHelper();
-		phonegap.setCriedentials("chrismelman@hotmail.com", "weetikveel");
-		if (phonegap.TryAuthenticate()) {
-
-			int id = phonegap.getAppId(name);
-			String filelocation = "draw.zip";
-			if (id == -1) {
-				phonegap.createApp(name, filelocation);
-				id = phonegap.getAppId(name);
-			} else {
-				phonegap.updateAppSource(id, filelocation);
-			}
-			String platform = "android";
-			int seconds = 1;
-			while (phonegap.checkBuildingStatusApp(id, platform).equals(
-					Status.PENDING)) {
-				System.out.println(platform + " build pending (" + seconds
-						+ "s)");
-				Thread.sleep(1000 * Math.min(seconds, 10));
-				seconds += Math.min(seconds, 10);
-			}
-			switch (phonegap.checkBuildingStatusApp(id, platform)) {
-			case COMPLETE:
-				break;
-			case ERROR:
-				phonegap.getBuildError(id, platform);
-				break;
-			case NULL:
-				throw new InvalidParameterException(
-						"probably the platform doesn't have a good key for building");
-			default:
-				throw new InvalidActivityException(
-						"Something interfered with the building process");
-			}
-			phonegap.getApp(name, id, platform,".");
-
-		} else {
-			throw new AuthenticationException(
-					"username/password combination is invalid");
-		}
-
 	}
 
 	public void getBuildError(int id, String platform) throws NamingException,
