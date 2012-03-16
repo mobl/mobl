@@ -54,7 +54,7 @@
   <!-- Main target -->
   <!--<target name="all-interpreter" depends="meta-sdf2table,sdf2table,ppgen,pppack,stratego.aster,stratego.ctree,sdf2imp,refresh" />-->
   <target name="all-interpreter" depends="check-classpath,meta-sdf2table,sdf2table,ppgen,pppack,stratego.aster,stratego.ctree,java.jar,sdf2imp,refresh" />
-  <target name="all" depends="check-classpath,meta-sdf2table,jar-phonegab,compile-java-strategies,sdf2table,ppgen,pppack,stratego.aster,stratego.jar,java.jar,sdf2imp,refresh" />
+  <target name="all" depends="check-classpath,meta-sdf2table,compile-java-strategies,sdf2table,ppgen,pppack,stratego.aster,stratego.jar,java.jar,sdf2imp,refresh" />
 
   <!-- Stratego to Java compiler -->
   <target name="moblc" depends="check-classpath,meta-sdf2table,sdf2table,ppgen,pppack,sdf2imp,compile-java-strategies,java.jar,rtg2sig">
