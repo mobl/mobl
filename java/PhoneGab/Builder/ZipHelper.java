@@ -16,7 +16,7 @@ public class ZipHelper {
 				zipFileName));
 		addDirectory(dirFile, zip, dirFile.getPath());
 		zip.close();
-	}
+	} 
  
 	private static void addDirectory(File dir, ZipOutputStream zip,
 			String removeDirpart) throws IOException {

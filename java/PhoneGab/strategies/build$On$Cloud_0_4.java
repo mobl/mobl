@@ -11,7 +11,7 @@ import javax.security.sasl.AuthenticationException;
 
 
 import mobl.Activator;
-import mobl.strategies.uglify_0_0;
+import mobl.strategies.uglify_0_0; 
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
