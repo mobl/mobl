@@ -9,8 +9,8 @@
 	<property name="externaljarx" value="utils/commons-codec-1.4.jar:utils/commons-logging-1.1.1.jar:utils/gson-2.1.jar:utils/httpclient-4.1.3.jar:utils/httpcore-4.1.4.jar:utils/httpmime-4.1.3.jar:utils/nativebuildPhonegap.jar" />
   <property name="metasdfmodule" value="Stratego-MoBL"/>
   <property name="java.jar.enabled" value="true"/>
-	<property name="externaljarflags" value="-la PhoneGab.strategies"/>
-	
+ <!-- <property name="externaljarflags" value="-la PhoneGab.strategies"/> -->
+	 
 <!--
 	<property name="externaljars1" value="d:\eclipseThesis(webdsl+MOBL)/eclipse/plugins/org.eclipse.jface_3.7.0.I20110522-1430.jar:d:\eclipseThesis(webdsl+MOBL)/eclipse/plugins/org.eclipse.core.runtime_3.7.0.v20110110.jar:d:\eclipseThesis(webdsl+MOBL)/eclipse/plugins/org.eclipse.equinox.common_3.6.0.v20110523.jar:d:\eclipseThesis(webdsl+MOBL)/eclipse/plugins/org.eclipse.swt.win32.win32.x86_64_3.7.1.v3738a.jar"/>
 -->	
