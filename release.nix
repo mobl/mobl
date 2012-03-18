@@ -87,7 +87,10 @@ let
       name = "moblc-r${toString mobl.rev}";
       src = mobl;
       buildfile = "build.main.xml";      
-
+	  org.strategoxt.imp.spoofax.generator = pkgs.fetchsvn{
+			url = https://svn.strategoxt.org/repos/StrategoXT/spoofax-imp/trunk/org.strategoxt.imp.spoofax.generator/;
+			sha256 = "14y9akqar3bp692ckzmx7llc4axz4v77kcnqh4kwx74ngmkac3jd";
+	  };
       antTargets = ["moblc-release"];
       antProperties = [ 
         { name = "eclipse.spoofaximp.jars"; value = "utils/"; }
@@ -108,11 +111,11 @@ let
       preConfigure = ''
         ulimit -s unlimited
         mkdir -p utils
-        cp -v ${aster} utils/aster.jar
-        cp -v ${make_permissive} utils/make_permissive.jar
+        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/aster.jar utils/aster.jar
+        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/make_permissive.jar utils/make_permissive.jar
         cp -v ${strategoxt} utils/strategoxt.jar
-        cp -v ${sdf2imp} utils/sdf2imp.jar
-        cp -v ${strategomix} utils/StrategoMix.def
+        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/sdf2imp.jar utils/sdf2imp.jar
+        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/StrategoMix.def utils/StrategoMix.def
         ensureDir $out/bin
       '';
        meta.maintainers = maindevelopers;
