@@ -7,7 +7,7 @@ let
   pkgs = import nixpkgs { system = "x86_64-linux" ; };
   maindevelopers = ["chrismelman@hotmail.com"];
   spoofaxgenerator = pkgs.fetchsvn{
-			url = https://svn.strategoxt.org/repos/StrategoXT/spoofax-imp/trunk/org.strategoxt.imp.spoofax.generator/;
+			url = https://svn.strategoxt.org/repos/StrategoXT/spoofax-imp/trunk/org.strategoxt.imp.spoofax.generator;
 			sha256 = "14y9akqar3bp692ckzmx7llc4axz4v77kcnqh4kwx74ngmkac3jd";
 	  };
   jars = {
