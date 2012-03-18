@@ -6,6 +6,10 @@
 let
   pkgs = import nixpkgs { system = "x86_64-linux" ; };
   maindevelopers = ["chrismelman@hotmail.com"];
+  org.strategoxt.imp.spoofax.generator = pkgs.fetchsvn{
+			url = https://svn.strategoxt.org/repos/StrategoXT/spoofax-imp/trunk/org.strategoxt.imp.spoofax.generator/;
+			sha256 = "14y9akqar3bp692ckzmx7llc4axz4v77kcnqh4kwx74ngmkac3jd";
+	  };
   jars = {
     aster = 
       pkgs.fetchurl {
@@ -33,6 +37,7 @@ let
         sha256 = "1dcki0sip6a9ng220px1n4dwfx6b7kdslkix1ld1r2apjnx6xz4n";
       } ;
   }; 
+  
 
   eclipseFun = import "${hydraConfig}/eclipse.nix" pkgs ;
 
@@ -87,10 +92,7 @@ let
       name = "moblc-r${toString mobl.rev}";
       src = mobl;
       buildfile = "build.main.xml";      
-	  org.strategoxt.imp.spoofax.generator = pkgs.fetchsvn{
-			url = https://svn.strategoxt.org/repos/StrategoXT/spoofax-imp/trunk/org.strategoxt.imp.spoofax.generator/;
-			sha256 = "14y9akqar3bp692ckzmx7llc4axz4v77kcnqh4kwx74ngmkac3jd";
-	  };
+
       antTargets = ["moblc-release"];
       antProperties = [ 
         { name = "eclipse.spoofaximp.jars"; value = "utils/"; }
@@ -166,7 +168,6 @@ let
         dontInstall = true;
        
       };
-      tests.install.meta.maintainers = maindevelopers;
       
     };
 
