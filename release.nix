@@ -117,11 +117,11 @@ let
       preConfigure = ''
         ulimit -s unlimited
         mkdir -p utils
-        cp -v ${spoofaxgenerator}/lib/aster.jar utils/aster.jar
-        cp -v ${spoofaxgenerator}/lib/make_permissive.jar utils/make_permissive.jar
+        cp -v ${aster} utils/aster.jar
+        cp -v ${make_permissive}/lib/make_permissive.jar utils/make_permissive.jar
         cp -v ${strategoxt} utils/strategoxt.jar
-        cp -v ${spoofaxgenerator}/lib/sdf2imp.jar utils/sdf2imp.jar
-        cp -v ${spoofaxgenerator}/lib/StrategoMix.def utils/StrategoMix.def
+        cp -v ${sdf2imp}/lib/sdf2imp.jar utils/sdf2imp.jar
+        cp -v ${StrategoMix}/lib/StrategoMix.def utils/StrategoMix.def
         ensureDir $out/bin
       '';
        meta.maintainers = maindevelopers;
