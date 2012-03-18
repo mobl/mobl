@@ -28,8 +28,7 @@ let
       } ;
     strategoxt = 
       pkgs.fetchurl {
-        url = http://zef.me/mobl/strategoxt.jar;
-        sha256 = "1xh2k0cds8m1hns90l99rxhb2imgc16mfdlkhlfsan0ygcidjgdf";
+        url = http://hydra.nixos.org/job/strategoxt-java/strc-java-trunk/build/latest/download-by-type/file/jar;
       } ;
     strategomix = 
       pkgs.fetchurl {
