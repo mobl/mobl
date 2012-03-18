@@ -31,7 +31,7 @@ let
         url = http://webdsl.org/mobldeps/strategoxt.jar;
         sha256 = "1974a1fd40518f19251ac646f9b06690e79e96fdb94a75ec5e015baa7425bbad";
       } ;
-    strategoMix = 
+    strategomix = 
       pkgs.fetchurl {
         url = http://zef.me/mobl/StrategoMix.def;
         sha256 = "1dcki0sip6a9ng220px1n4dwfx6b7kdslkix1ld1r2apjnx6xz4n";
@@ -121,7 +121,7 @@ let
         cp -v ${make_permissive}/lib/make_permissive.jar utils/make_permissive.jar
         cp -v ${strategoxt} utils/strategoxt.jar
         cp -v ${sdf2imp}/lib/sdf2imp.jar utils/sdf2imp.jar
-        cp -v ${StrategoMix}/lib/StrategoMix.def utils/StrategoMix.def
+        cp -v ${strategomix}/lib/StrategoMix.def utils/StrategoMix.def
         ensureDir $out/bin
       '';
        meta.maintainers = maindevelopers;
