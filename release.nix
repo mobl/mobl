@@ -6,7 +6,7 @@
 let
   pkgs = import nixpkgs { system = "x86_64-linux" ; };
   maindevelopers = ["chrismelman@hotmail.com"];
-  org.strategoxt.imp.spoofax.generator = pkgs.fetchsvn{
+  spoofaxgenerator = pkgs.fetchsvn{
 			url = https://svn.strategoxt.org/repos/StrategoXT/spoofax-imp/trunk/org.strategoxt.imp.spoofax.generator/;
 			sha256 = "14y9akqar3bp692ckzmx7llc4axz4v77kcnqh4kwx74ngmkac3jd";
 	  };
@@ -113,11 +113,11 @@ let
       preConfigure = ''
         ulimit -s unlimited
         mkdir -p utils
-        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/aster.jar utils/aster.jar
-        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/make_permissive.jar utils/make_permissive.jar
+        cp -v $spoofaxgenerator}/lib/aster.jar utils/aster.jar
+        cp -v ${spoofaxgenerator}/lib/make_permissive.jar utils/make_permissive.jar
         cp -v ${strategoxt} utils/strategoxt.jar
-        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/sdf2imp.jar utils/sdf2imp.jar
-        cp -v ${org.strategoxt.imp.spoofax.generator}/lib/StrategoMix.def utils/StrategoMix.def
+        cp -v ${spoofaxgenerator}/lib/sdf2imp.jar utils/sdf2imp.jar
+        cp -v ${spoofaxgenerator}/lib/StrategoMix.def utils/StrategoMix.def
         ensureDir $out/bin
       '';
        meta.maintainers = maindevelopers;
