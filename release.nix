@@ -92,13 +92,17 @@ let
       name = "moblc-r${toString mobl.rev}";
       src = mobl;
       buildfile = "build.main.xml";      
-
       antTargets = ["moblc-release"];
       antProperties = [ 
         { name = "eclipse.spoofaximp.jars"; value = "utils/"; }
         { name = "build.compiler"; value = "org.eclipse.jdt.core.JDTCompilerAdapter"; }
         { name = "java.jar.enabled"; value = "true"; }
       ];
+      
+      spoofaxgenerator = pkgs.fetchsvn{
+			url = https://svn.strategoxt.org/repos/StrategoXT/spoofax-imp/trunk/org.strategoxt.imp.spoofax.generator;
+			sha256 = "14y9akqar3bp692ckzmx7llc4axz4v77kcnqh4kwx74ngmkac3jd";
+	  };
 
       buildInputs = [pkgs.strategoPackages.sdf];
 
@@ -113,7 +117,7 @@ let
       preConfigure = ''
         ulimit -s unlimited
         mkdir -p utils
-        cp -v $spoofaxgenerator}/lib/aster.jar utils/aster.jar
+        cp -v ${spoofaxgenerator}/lib/aster.jar utils/aster.jar
         cp -v ${spoofaxgenerator}/lib/make_permissive.jar utils/make_permissive.jar
         cp -v ${strategoxt} utils/strategoxt.jar
         cp -v ${spoofaxgenerator}/lib/sdf2imp.jar utils/sdf2imp.jar
