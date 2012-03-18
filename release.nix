@@ -13,18 +13,18 @@ let
   jars = {
     aster = 
       pkgs.fetchurl {
-        url = http://zef.me/mobl/aster.jar;
-        sha256 = "1jsk6vidmvlnw2hjqs6syvv8fniapn6qxlx2va8hwpf3px49i103";
+        url = http://webdsl.org/mobldeps/aster.jar;
+        sha256 = "08487bb0b82b2401661c2b53031cae6f20feaa8b0ceacf7735293de75444917f";
       } ;
     make_permissive = 
       pkgs.fetchurl {
-        url = http://zef.me/mobl/make_permissive.jar;
-        sha256 = "1m7sny5dxg2ga0ac4irqmbw6jqqg9bxf8qbrj3a317dinllfsvhg";
+        url = http://webdsl.org/mobldeps/make_permissive.jar;
+        sha256 = "0541482cf686a3ed17efdf5b9d6edfa99447b0dee53c25df9fd6f408e5e4d175";
       } ;
     sdf2imp = 
       pkgs.fetchurl {
-        url = http://zef.me/mobl/sdf2imp.jar;
-        sha256 = "128j8waw3mp6iwjd7akd1fy8i7hd4bppvjlnvwpmf6x0mhc11v3a";
+        url = http://webdsl.org/mobldeps/sdf2imp.jar;
+        sha256 = "91646adad47ca66db0bbdd9a472ec659f8d4411d841c36b3f701a9e86a907f7f";
       } ;
     strategoxt = 
       pkgs.fetchurl {
