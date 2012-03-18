@@ -31,7 +31,7 @@ let
         url = http://webdsl.org/mobldeps/strategoxt.jar;
         sha256 = "1974a1fd40518f19251ac646f9b06690e79e96fdb94a75ec5e015baa7425bbad";
       } ;
-    strategomix = 
+    strategoMix = 
       pkgs.fetchurl {
         url = http://zef.me/mobl/StrategoMix.def;
         sha256 = "1dcki0sip6a9ng220px1n4dwfx6b7kdslkix1ld1r2apjnx6xz4n";
