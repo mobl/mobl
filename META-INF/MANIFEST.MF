@@ -20,8 +20,18 @@ Require-Bundle: org.eclipse.core.runtime,
  org.spoofax.interpreter.core,
  org.strategoxt.strj,
  org.eclipse.osgi
-Bundle-ClassPath: ., utils/yuicompressor.jar
+Bundle-ClassPath: .,
+ utils/yuicompressor.jar,
+ utils/commons-codec-1.4.jar,
+ utils/commons-logging-1.1.1.jar,
+ utils/gson-2.1.jar,
+ utils/httpclient-4.1.3.jar,
+ utils/httpcore-4.1.4.jar,
+ utils/httpmime-4.1.3.jar,
+ utils/nativebuildPhonegap.jar
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: mobl,
-  mobl.strategies,
-  org.mozilla.javascript
+Export-Package: PhoneGab.Builder,
+ PhoneGab.strategies,
+ mobl,
+ mobl.strategies,
+ org.mozilla.javascript
