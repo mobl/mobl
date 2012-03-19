@@ -86,10 +86,10 @@
   </target>
 
   <target name="compile-java-strategies">
-   <!--
+   
   	<javac classpath="utils/strategoxt.jar:utils/yuicompressor.jar:java-src:${externaljarimport2}:${externaljarimport}:${java.jar.classpath}:${externaljars1}" srcdir="editor/java" includes="mobl/strategies/**" destdir="${build}" source="1.5" target="1.5" debug="on"/>
   
-  -->
+  
   </target>
 
   <target name="moblc-release" depends="moblc">
