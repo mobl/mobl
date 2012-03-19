@@ -13,8 +13,8 @@ let
   jars = {
     aster = 
       pkgs.fetchurl {
-        url = http://zef.me/mobl/aster.jar;
-        sha256 = "1jsk6vidmvlnw2hjqs6syvv8fniapn6qxlx2va8hwpf3px49i103";
+        url = http://webdsl.org/mobldeps/aster.jar;
+       sha256 = "08487bb0b82b2401661c2b53031cae6f20feaa8b0ceacf7735293de75444917f";
       } ;
     make_permissive = 
       pkgs.fetchurl {
