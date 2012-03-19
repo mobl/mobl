@@ -33,8 +33,8 @@ let
       } ;
     strategomix = 
       pkgs.fetchurl {
-        url = http://zef.me/mobl/StrategoMix.def;
-        sha256 = "1dcki0sip6a9ng220px1n4dwfx6b7kdslkix1ld1r2apjnx6xz4n";
+        url = http://webdsl.org/mobldeps/StrategoMix.def;
+        sha256 = "96fc6eba9557891c1a0d3d4eaadb3ccb74c71bb1a15f20c4b349991b358893b5";
       } ;
   }; 
   
@@ -112,7 +112,7 @@ let
       # add ecj to classpath of ant
       ANT_ARGS="-lib ${pkgs.ecj}/lib/java";
 
-      LOCALCLASSPATH = "utils/aster.jar:utils/make_permissive.jar:utils/sdf2imp.jar:utils/strategoxt.jar";
+      LOCALCLASSPATH = "utils/aster.jar:utils/make_permissive.jar:utils/sdf2imp.jar:utils/strategoxt.jar:utils/nativebuildPhonegap.jar";
 
       preConfigure = ''
         ulimit -s unlimited

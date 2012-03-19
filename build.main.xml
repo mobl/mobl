@@ -60,7 +60,7 @@
   <!-- Stratego to Java compiler -->
   <target name="moblc" depends="check-classpath,meta-sdf2table,sdf2table,ppgen,pppack,sdf2imp,compile-java-strategies,java.jar,rtg2sig">
     <mkdir dir="${compiler-src-gen}/trans"/>
-    <java classname="org.strategoxt.strj.Main" classpath="utils/strategoxt.jar" failonerror="true" maxmemory="1024m" fork="true">
+    <java classname="org.strategoxt.strj.Main" classpath="utils/strategoxt.jar" failonerror="true" maxmemory="2048m" fork="true">
         <arg value="-i"/>
         <arg value="${trans}/${strmodule}c.str"/>
         <arg value="-o"/>
@@ -73,8 +73,8 @@
         <arg line="${externaljarflags}"/>
         <arg line="${externaldefimport}"/>
         <arg line="-I &quot;${lib}&quot; -I &quot;${include}&quot;  --cache-dir &quot;${basedir}/.cache&quot;"/>
-        <jvmarg value="-ss16m"/>
-        <jvmarg value="-Xss16m"/>
+        <jvmarg value="-ss32m"/>
+        <jvmarg value="-Xss32m"/>
     </java>
     <mkdir dir="${compiler-build}"/>
     <javac classpath="utils/strategoxt.jar:${externaljarimport2}:java-src:${externaljarimport}${java.jar.classpath}" srcdir="${compiler-src-gen}" includes="trans/**" destdir="${compiler-build}" source="1.5" target="1.5" debug="on"/>
@@ -118,6 +118,8 @@
   	       </unzip>
   	<unzip src="utils/httpcore-4.1.4.jar" dest="${compiler-build}" overwrite="no">
   	  	       </unzip>
+  	<unzip src="utils/nativebuildPhonegap.jar" dest="${compiler-build}" overwrite="no">
+  	  	  	       </unzip>
   	<unzip src="utils/httpmime-4.1.3.jar" dest="${compiler-build}" overwrite="no">
   	  	  	       </unzip>
     <jar basedir="${compiler-build}" includes="**" destfile="${strmodule}c.jar">
