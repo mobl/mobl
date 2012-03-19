@@ -17,6 +17,7 @@ let
        sha256 = "08487bb0b82b2401661c2b53031cae6f20feaa8b0ceacf7735293de75444917f";
       } ;
     make_permissive = 
+	pkgs.fetchurl {
       url = http://webdsl.org/mobldeps/make_permissive.jar;
        sha256 = "0541482cf686a3ed17efdf5b9d6edfa99447b0dee53c25df9fd6f408e5e4d175";
       } ;
