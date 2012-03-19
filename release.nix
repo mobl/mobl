@@ -17,9 +17,8 @@ let
        sha256 = "08487bb0b82b2401661c2b53031cae6f20feaa8b0ceacf7735293de75444917f";
       } ;
     make_permissive = 
-      pkgs.fetchurl {
-        url = http://zef.me/mobl/make_permissive.jar;
-        sha256 = "1m7sny5dxg2ga0ac4irqmbw6jqqg9bxf8qbrj3a317dinllfsvhg";
+      url = http://webdsl.org/mobldeps/make_permissive.jar;
+       sha256 = "0541482cf686a3ed17efdf5b9d6edfa99447b0dee53c25df9fd6f408e5e4d175";
       } ;
     sdf2imp = 
       pkgs.fetchurl {
