@@ -6,7 +6,7 @@ completions
     //completion keyword  : "screen"
     //completion template : "screen " "e" " () {\n\t  \n}\n"
 
-    completion proposer : editor-complete 
+    completion proposer : editor-complete
     identifier lexical  : [A-Za-z0-9_\$]+
     completion trigger  : "\."
     completion trigger  : "::"

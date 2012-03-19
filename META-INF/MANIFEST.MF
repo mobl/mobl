@@ -30,8 +30,8 @@ Bundle-ClassPath: .,
  utils/httpmime-4.1.3.jar,
  utils/nativebuildPhonegap.jar
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: PhoneGab.strategies,
+Export-Package: PhoneGab.Builder,
+ PhoneGab.strategies,
  mobl,
- mobl.Builder,
  mobl.strategies,
  org.mozilla.javascript
