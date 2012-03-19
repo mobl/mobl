@@ -23,8 +23,8 @@ let
       } ;
     sdf2imp = 
       pkgs.fetchurl {
-        url = http://zef.me/mobl/sdf2imp.jar;
-        sha256 = "128j8waw3mp6iwjd7akd1fy8i7hd4bppvjlnvwpmf6x0mhc11v3a";
+        url = http://webdsl.org/mobldeps/sdf2imp.jar;
+       sha256 = "91646adad47ca66db0bbdd9a472ec659f8d4411d841c36b3f701a9e86a907f7f";
       } ;
     strategoxt = 
       pkgs.fetchurl {
