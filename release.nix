@@ -112,7 +112,7 @@ let
       # add ecj to classpath of ant
       ANT_ARGS="-lib ${pkgs.ecj}/lib/java";
       
-      ANT_OPTS="-Declipse.spoofaximp.jars=utils/ -Xss8m -ss16m -Xmx1024m" ant -lib utils -f build.main.xml moblc
+      ANT_OPTS="-Declipse.spoofaximp.jars=utils/ -Xss8m -ss16m -Xmx1024m" ant -lib utils -f build.main.xml moblc ;
 
       LOCALCLASSPATH = "utils/aster.jar:utils/make_permissive.jar:utils/sdf2imp.jar:utils/strategoxt.jar:utils/nativebuildPhonegap.jar";
 
