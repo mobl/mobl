@@ -44,7 +44,7 @@ rules
               ; cachable-resource* := [$[[<qid-to-path> mod-name].js], $[[<qid-to-path> mod-name].css], resource*, script-tag-js*, style-tag-css*]
             )
           ; compile
-          ; special-js* := ["js/jquery-1.4.min.js", "js/persistence.js", "js/persistence.store.sql.js", "js/persistence.store.websql.js", "js/persistence.store.memory.js", "js/persistence.search.js"]
+          ; special-js* := ["js/jquery-1.7.1.min.js", "js/persistence.js", "js/persistence.store.sql.js", "js/persistence.store.websql.js", "js/persistence.store.memory.js", "js/persistence.search.js"]
           ; all-js1 := <read-files-and-concat> special-js*
           ; all-js2 := <read-files-and-concat> [inlinable-js*, js-filename]
           ; setting* := <get-configuration>

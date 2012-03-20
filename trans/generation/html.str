@@ -23,7 +23,7 @@ strategies
     <div id="mobl-loading">
       [loading-html]
     </div>
-    <script src="js/jquery-1.4.min.js" type="application/x-javascript" charset="utf-8"></script>
+    <script src="js/jquery-1.7.1.min.js" type="application/x-javascript" charset="utf-8"></script>
     <script src="js/persistence.js" type="application/x-javascript" charset="utf-8"></script>
     <script src="js/persistence.store.sql.js" type="application/x-javascript" charset="utf-8"></script>
     <script src="js/persistence.store.websql.js" type="application/x-javascript" charset="utf-8"></script>
