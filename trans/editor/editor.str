@@ -53,7 +53,7 @@ rules
   editor-analyze:
     (ast@Configuration(_), path, project-path) -> (ast, errors, warnings, notes)
     with
-    errors   := <collect-all(constraint-error, conc)> ast
+    errors   := <filter(where(not(?(StyleVar(_),_))))><collect-all(constraint-error, conc)> ast
       ; if not([] := errors) then
           rules ( HasErrors := True() )
           ; debug(!"Errors: ")
