@@ -95,6 +95,8 @@ rules
     Import(qid) -> []
     where <Inlined> qid
 
+ 
+
   generate-db-init-code(|setting*) :
     Application(qid, _) -> $[
     if (window && window.google && google.gears || window.openDatabase) {

@@ -9,6 +9,8 @@ imports
   pp
   style
   lib/editor-common
+  generation/html
+  analyze
 
 imports
   editor/resolve
@@ -187,3 +189,32 @@ rules
               })
             end
           )
+ 
+ 
+ generate-offline-manifest: (selected, position, ast, path, project-path) -> None()
+  with
+  	 try(dr-scope-all-end)
+      ; dr-scope-all-start
+      ;rules ( ProjectPath     := project-path
+              CachedParseAst  : path -> ast )
+      ; setup-paths
+      ;ast2:=<analyze>ast  
+      ; (Module(mod-name, _) := ast2 <+ Application(mod-name, _) := ast <+ ServerApplication(mod-name, _, _) := ast <+ Configuration(_) := ast; mod-name := "")
+       ; where(
+			   setting* := <get-configuration>
+			  ; manifest-filename   := <concat-strings; guarantee-extension(|"manifest")> [<OutputPath>, "/", <qid-to-path> mod-name]
+			  ; if <fetch-elem(?HtmlSetting(index-html-setting))> setting* then
+              		index-html-filename := index-html-setting
+           		else
+              		index-html-filename := <concat-strings>[<qid-to-path> mod-name, ".html"]
+            	end
+              ; cachable-resource* := [index-html-filename,<get-all-resources>mod-name]
+            )
+            ;<debug(!"here")>cachable-resource*
+            ; <debug(!"manifest-filename:")>manifest-filename
+         ;fp3 := <fopen <+ debug(!"Could not open file: "); fail> (manifest-filename, "w")
+              ; {| ResourceProcessed
+                 : <fputs> (<generate-manifest <+ debug(!"Could not generate index.manifest")> cachable-resource*, fp3)
+                 |}
+              ; <fclose> fp3
+              ; <refresh-workspace-file> manifest-filename   
