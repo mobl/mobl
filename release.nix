@@ -2,7 +2,7 @@
 , mobl ? { outPath = ./.; rev = 1234; }
 , moblPlugin ? { outPath = ../mobl-plugin ; rev = 1234; }
 , hydraConfig ? { outPath = ../hydra-config ; rev = 1234; }
-, webdslzips ? { outPath = ../webdsl-zips ; rev 1234;}
+, webdslzips ? { outPath = ../webdsl-zips ; rev = 1234;}
 }: 
 let
   pkgs = import nixpkgs { system = "x86_64-linux" ; };
