@@ -2,6 +2,7 @@
 , mobl ? { outPath = ./.; rev = 1234; }
 , moblPlugin ? { outPath = ../mobl-plugin ; rev = 1234; }
 , hydraConfig ? { outPath = ../hydra-config ; rev = 1234; }
+, webdslzips ? { outPath = ../webdsl-zips ; rev 1234;}
 }: 
 let
   pkgs = import nixpkgs { system = "x86_64-linux" ; };
@@ -176,7 +177,18 @@ let
       };
       
     };
-
+ zips = import "${webdslzips}/eclipse.nix" {
+  buildInputs = [jobs.tests.install];
+  basename = "mobl-0.4.5";
+  updatesites = [
+    "http://hydra.nixos.org/job/mobl/master/updatesite/latest/download/1/site"
+    "http://download.eclipse.org/releases/indigo"
+  ];
+  installIUs = [
+    "org.mobl_lang.feature.feature.group"
+  ];  
+}).zips
+  
   };
 
 in jobs
