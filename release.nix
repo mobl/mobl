@@ -178,7 +178,7 @@ let
       
     };
  zips = (import "${webdslzips}/eclipse.nix" {
-  buildInputs = [jobs.tests.install];
+ 
   basename = "mobl-0.4.5";
   updatesites = [
     "http://hydra.nixos.org/job/mobl/master/updatesite/latest/download/1/site"
@@ -187,6 +187,7 @@ let
   installIUs = [
     "org.mobl_lang.feature.feature.group"
   ];  
+   extraBuildInputs = [jobs.tests.install];
 }).zips;
   
   };
