@@ -179,15 +179,15 @@ let
     };
  zips = (import "${webdslzips}/eclipse.nix" {
  
-  basename = "mobl-0.4.5";
+  basename = "mobl-r${toString mobl.rev}";
   updatesites = [
-    "http://hydra.nixos.org/job/mobl/master/updatesite/latest/download/1/site"
+    "http://hydra.nixos.org/job/mobl/master/updatesite/latest/download/2/site"
     "http://download.eclipse.org/releases/indigo"
   ];
   installIUs = [
     "org.mobl_lang.feature.feature.group"
   ];  
-   extraBuildInputs = [jobs.tests.install];
+   extraBuildInputs = [jobs.updatesite];
 }).zips;
   
   };
