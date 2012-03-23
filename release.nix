@@ -182,6 +182,7 @@ let
   basename = "mobl-r${toString mobl.rev}";
   updatesites = [
     "http://hydra.nixos.org/job/mobl/master/updatesite/latest/download/2/site"
+    "http://www.lclnet.nl/update"
     "http://download.eclipse.org/releases/indigo"
   ];
   installIUs = [
