@@ -208,7 +208,7 @@ rules
            		else
               		index-html-filename := <concat-strings>[<qid-to-path> mod-name, ".html"]
             	end
-              ; cachable-resource* := [index-html-filename,<get-all-resources>mod-name]
+              ; cachable-resource* := [index-html-filename,<get-all-resources-includeall>mod-name]
             )
             ;<debug(!"here")>cachable-resource*
             ; <debug(!"manifest-filename:")>manifest-filename

@@ -103,6 +103,19 @@ strategies
 ]
 
   get-all-resources :
+    qid -> [lres*, import*, style*, $[[<qid-to-path> qid].js]]
+    where not(ResourceProcessed)
+    with rules ( ResourceProcessed : qid )
+       ; def* := <get-module-defs> qid
+       ; lres* := <filter(?Load(<id>); path-to-string)> def*
+       ; import* := <filter((?Import(<id>) <+ ?DynamicImport(<id>)); get-all-resources); concat> def*
+       ; if [] := <filter(?ExternalStyle(_, _))> def* then
+            style* := []
+         else
+            style* := [$[[<qid-to-path> qid].css]]
+         end
+
+get-all-resources-includeall :
     qid -> [lres*,res*, import*, style*, $[[<qid-to-path> qid].js]]
     where not(ResourceProcessed)
     with rules ( ResourceProcessed : qid )
@@ -115,7 +128,6 @@ strategies
          else
             style* := [$[[<qid-to-path> qid].css]]
          end
-
   get-all-resources-no-dynamic(|qid) :
     def* -> [res*, import*, style*, $[[<qid-to-path> qid].js]]
     where not(ResourceProcessed)

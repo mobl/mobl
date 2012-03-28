@@ -19,7 +19,7 @@ rules
     	; try(if <file-exists> $[[project-path]/native/] then
               <deltree>  $[[project-path]/native/] 
             end)
-    	; setting* := <get-configuration>
+    	; setting* := <get-configuration> 
     	; NativeSettings(nativesettings) := <fetch-elem(?NativeSettings(_))>setting*
     	; buildfarmUsername(username) := <fetch-elem(?buildfarmUsername(_))>nativesettings
     	; buildfarmPassword(password) := <fetch-elem(?buildfarmPassword(_))>nativesettings
@@ -41,7 +41,7 @@ rules
     		then setting2* := <map(try(replace-html))>setting* 
     		else setting2* := [HtmlSetting("index.html")|setting*]
     	end; 
-    	if(<fetch(?HtmlSetting(_))>setting*)  
+    	if(<fetch(?OutputSetting(_))>setting*)  
     		then newsetting* := <map(try(replace-output))>setting2* 
     		else newsetting* := [OutputSetting($["./native/src"])|setting2*]
     	end	
