@@ -5,6 +5,7 @@ imports
   generation/action
   generation/compile
   pp
+  nativebuild
 
 strategies
 
@@ -23,6 +24,7 @@ strategies
     <div id="mobl-loading">
       [loading-html]
     </div>
+    [phonegap]
     <script src="js/jquery-1.7.1.min.js" type="application/x-javascript" charset="utf-8"></script>
     <script src="js/persistence.js" type="application/x-javascript" charset="utf-8"></script>
     <script src="js/persistence.store.sql.js" type="application/x-javascript" charset="utf-8"></script>
@@ -60,7 +62,10 @@ strategies
        ; <filter(?IconSetting(icon))> setting*
        ; html-manifest := <fetch(?OfflineSetting()); !$[manifest="[<qid-to-path> qid].manifest"] <+ !""> setting*
        ; loading-html := <filter(?LoadingHtmlSetting(html)); ?[LoadingHtmlSetting(<string-to-html>)|_] <+ !$[Loading... <img src="data:image/gif;base64,R0lGODlhCgAKAJEDAMzMzP9mZv8AAP///yH/C05FVFNDQVBFMi4wAwEAAAAh+QQFAAADACwAAAAACgAKAAACF5wncgaAGgJzJ647cWua4sOBFEd62VEAACH5BAUAAAMALAEAAAAIAAMAAAIKnBM2IoMDAFMQFAAh+QQFAAADACwAAAAABgAGAAACDJwHMBGofKIRItJYAAAh+QQFAAADACwAAAEAAwAIAAACChxgOBPBvpYQYxYAIfkEBQAAAwAsAAAEAAYABgAAAgoEhmPJHOGgEGwWACH5BAUAAAMALAEABwAIAAMAAAIKBIYjYhOhRHqpAAAh+QQFAAADACwEAAQABgAGAAACDJwncqi7EQYAA0p6CgAh+QQJAAADACwHAAEAAwAIAAACCpRmoxoxvQAYchQAOw==" width="10" height="10"><p>(If this message still shows after a few seconds, probably something went wrong. Does your browser support Javascript?)</p>]> setting*
-
+	   ; if (Native) then
+    		phonegap := $[<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>]
+    		else phonegap:= ""
+    	end
 
   string-to-html =
     where(not(string-starts-with(|"\"\"\"")))
