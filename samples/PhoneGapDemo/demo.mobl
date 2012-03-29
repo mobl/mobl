@@ -4,12 +4,12 @@ import mobl::ui::generic
 import phonegap::camera
 import phonegap::contact
 import phonegap::accelerometer
-import phonegap::compass
-import phonegap::notification
-
-screen root() {
+import phonegap::compass 
+import phonegap::notification 
+  
+screen root() {    
   header("PhoneGap")
-  group {
+  group { 
     item(onclick={ cameraDemo(); }) { "Camera" }
     item(onclick={ contactDemo(); }) { "Contacts" }
     item(onclick={ accelerometerDemo(); }) { "Accelerometer" }
@@ -49,10 +49,7 @@ screen accelerometerDemo() {
   var acc : Acceleration = null
   var watchId = -1
   header("Accelerometer") {
-    backButton(onclick={
-      Accelerometer.clearWatch(watchId);
-      screen return;
-    })
+    backButton()
   }
   when(acc) {
     table {
@@ -87,31 +84,35 @@ screen accelerometerDemo() {
 }
 
 screen compassDemo() {
-  var value = -1
-  var watchId = -1
+  var value = CompassHeading()
+  var x = Compass.getCurrentHeading()
+  var watchId = -1 
   header("Compass") {
     backButton(onclick={
       Compass.clearWatch(watchId);
       screen return;
-    })
-  }
-
-  label(value)
+    }) 
+  }   
+ 
+  label(value.headingAccuracy)
+  label(value.magneticHeading)
+  label(value.trueHeading)
+  label(x.timestamp)
   block { label(watchId) }
-
+ 
   script {
-    watchId = Compass.watchHeading(function(val : Num) {
+    watchId = Compass.watchHeading(function(val : CompassHeading) {
       value = val;
-    }, function() {
-      log("Fail");
-    }, frequency=100);
+    }, function(error : CompassError) {
+      log("Fail" + error.code);
+    }, frequency=100);  
   }
 }
-
+ 
 screen notificationDemo() {
   header("Notifications") {
     backButton()
-  }
+  } 
   button("Alert", onclick={
     Notification.alert("Hello there", title="A Message", buttonName="OK");
   })
