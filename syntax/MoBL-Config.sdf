@@ -37,5 +37,4 @@ sorts
     "blackberry" 	-> PLATFORM
     "symbian"	  	-> PLATFORM
     "webos"	  		-> PLATFORM
-    "winphone"	  		-> PLATFORM
     

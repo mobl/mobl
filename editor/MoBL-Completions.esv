@@ -181,7 +181,7 @@ completions
     "native {\n" 
 	    "\tusername " <"username">"\n" 
 	    "\tpassword " <"password">"\n" 
-	    "\tplatforms " <android, blackberry, symbian, webos, winphone, ios>"\n"
+	    "platforms " <android, blackberry, symbian, webos, ios>"\n"
     "}"(blank)
     
   completion template : NativeSetting =
@@ -191,7 +191,7 @@ completions
   	"password" <"password"> (blank)
   	
   completion template : NativeSetting =
-  	"platforms " <android, blackberry, symbian, webos, winphone, ios> (blank)
+  	"platforms " <android, blackberry, symbian, webos, ios> (blank)
   
   completion template PLATFORM :
   	"ios"
@@ -206,7 +206,4 @@ completions
   	"android"
   
   completion template PLATFORM :
-  	"webos"	
-  	
-  completion template PLATFORM :
-  	"winphone"			
+  	"webos"		
