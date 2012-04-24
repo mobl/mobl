@@ -48,6 +48,7 @@ public class PhonegapAPIHelper {
 			put("blackberry", "jad");
 			put("symbian", "wgz"); 
 			put("webos", "ipk");
+			put("winphone", "xap");
 		}
 	}
 
@@ -55,7 +56,7 @@ public class PhonegapAPIHelper {
 	private Gson gson = new Gson();
 	private JsonParser parser = new JsonParser(); 
 	private final String[] platforms = { "android", "ios", "blackberry",
-			"symbian", "webos" };
+			"symbian", "webos", "winphone" };
 	private final Map<String, String> extensionMap = new HashMapExtension();
 
 	public PhonegapAPIHelper() {
