@@ -235,7 +235,7 @@ rules
 
   constraint-error :
     t@Call(qid, e*) -> (arg, $[No such property defined for [<pp-mobl-qid> qid]: [arg]])
-    where ExternalEntity(_, _, _, prop*) := <lookup-type> SimpleType(qid)
+    where prop* := <get-all-properties>  SimpleType(qid)
        <+ ExternalType(_, _, _, prop*) := <lookup-type> SimpleType(qid)
     where not(QId("mobl", "Dynamic") := qid)
     where args := <map(?NamedExp(<id>, _))> e*
