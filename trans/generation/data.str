@@ -23,10 +23,10 @@ strategies
     [varname] = persistence.define('[<qid-to-html> qid]', {
       [props]
     });
-    [sync-code]
+    [sync-code] 
     [methods]
     ]
-    with props := <filter(property-to-js(|qid)); separate-by(!",\n"); concat-strings> prop*
+    with props := <get-all-properties;filter(not(?Property(_, "id", _, _)));filter(property-to-js(|qid)); separate-by(!",\n"); concat-strings> SimpleType(qid)
        ; if <is-string> qid then
            varname := $[var [qid]]
          else
