@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <project name="MoBL" default="all">
+
   <!-- Key input modules -->
   <property name="sdfmodule" value="MoBL" />
   <property name="esvmodule" value="MoBL" />
@@ -51,11 +52,17 @@
   <property name="build.strategoxt.stratego" location="${user.home}/.nix-profile/bin" />
 
   <import file="build.generated.xml" />
-
+  <target name="start-record">
+  	<record name="${basedir}\log.txt" action="start" loglevel="verbose" append="no"  />
+  </target>
+  <target name="stop-record">
+	  	<record name="${basedir}\log.txt" action="stop"/>
+  </target>
   <!-- Main target -->
   <!--<target name="all-interpreter" depends="meta-sdf2table,sdf2table,ppgen,pppack,stratego.aster,stratego.ctree,sdf2imp,refresh" />-->
   <target name="all-interpreter" depends="check-classpath,meta-sdf2table,sdf2table,ppgen,pppack,stratego.aster,stratego.ctree,java.jar,sdf2imp,refresh" />
-  <target name="all" depends="check-classpath,meta-sdf2table,compile-java-strategies,sdf2table,ppgen,pppack,stratego.aster,stratego.jar,java.jar,sdf2imp,refresh" />
+  <target name="all" depends="start-record,check-classpath,meta-sdf2table,compile-java-strategies,sdf2table,ppgen,pppack,stratego.aster,stratego.jar,java.jar,sdf2imp,refresh,stop-record" />
+
 
   <!-- Stratego to Java compiler -->
   <target name="moblc" depends="check-classpath,meta-sdf2table,sdf2table,ppgen,pppack,sdf2imp,compile-java-strategies,java.jar,rtg2sig">
