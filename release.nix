@@ -167,8 +167,8 @@ let
       install = eclipseFun {
         name = "eclipse-mobl-install-test";
         src =  pkgs.fetchurl {
-          url = http://download.springsource.com/release/ECLIPSE/helios/SR1/eclipse-SDK-3.6.1-linux-gtk.tar.gz ;
-          sha256 = "0s48rjaswi8m5gan1zlqvfwb4l06x5nslkq41wpkrbyj9ka8gh4x";
+          	url = http://download.springsource.com/release/ECLIPSE/indigo/SR2/eclipse-SDK-3.7.2-linux-gtk.tar.gz ;
+     		sha256 = "f2cce7db448fa1209452605a653d82b7db17a844a86ed3bdb07e265a483c56c7";
         };
         updatesites = [ "file://${jobs.updatesite}/site" ];
         installIUs = [ "org.mobl_lang.feature.feature.group" ];
