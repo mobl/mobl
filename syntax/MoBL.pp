@@ -119,8 +119,65 @@
    SingleBranch              -- H hs=0 [_1],
    Regex                     -- H hs=0 [ KW["/"] _1 KW["/"] ],
 
+   EntityNoSuper             -- V[V is=2[H[ _1 KW["entity"] _2 KW["{"]] _3] KW["}"]],
+   
+   Property                  -- H[_1 _2 KW[":"]_3 KW["("] _4 KW[")"]],   
+   Property.4:iter-star-sep  -- H hs=0[_1 KW[","]],   
+   PropertyNoAnnos           -- H[_1 _2 KW[":"]_3],   
+	
+   Module                    -- V is=2[H[KW["module"] _1] _2],  
+   
+   Import                    -- H [KW["import"] _1] , 
+   
+   Function                  -- V[V is=2[H[_1 KW["function"] _2 KW["("] _3 KW[")"] KW[":"] _4 KW["{"]] _5] KW["}"]],
+   FunctionNoReturnType      -- V[V is=2[H[_1 KW["function"] _2 KW["("] _3 KW[")"] KW["{"]] _4] KW["}"]],
+   
+   Service                   -- V[V is=2[H[_1 KW["service"] _2 KW["{"]] _3] KW["}"]],
+   Resource                  -- V[V is=2[H[_1 KW["resource"] _2 KW["("] _3 KW[")"] KW[":"] _4 KW["{"]] _5] KW["}"]],
+
+   	
+   If                        -- V[H[KW["if"] KW["("] _1 KW[")"]] _2 KW["else"] _3],
+   IfNoElse                  -- V[H[KW["if"] KW["("] _1 KW[")"]] _2 ],
+   WhenNoElse                -- V[ V is=2[ H[KW["when"] KW["("] _1 KW[")"] KW["{"]] _2] KW["}"]],
+
+   Block                     -- V  [V is=2 [KW["{"] _1] KW["}"]],
+   
+   For                       -- V[ V is=2[ H[KW["foreach"] KW["("] _1 KW[":"] _2 KW["in"] _3 KW[")"] KW["{"]] _4] KW["}"]],
+   While                     -- V[ V is=2[ H[KW["while"] KW["("] _1 KW[")"] KW["{"]] _2] KW["}"]],
+   ListInferred              -- V[ V is=2[ H[KW["list"] KW["("] _1 KW["in"] _2 KW[")"] KW["{"]] _3] KW["}"]],
+
+
+   ExpStat                	 -- H hs=0[_1 KW[";"]],
+   Assignment                -- H hs=1[_1 KW["="] _2 KW[";"]],
+
+   
+   MethodCall                -- H[ _1 KW["."] _2 KW["("] _3 KW[")"]],
+   ControlCallNoBody         -- H[ _1 KW["("] _2 KW[")"]],
+   ControlCall               -- V[ V is=2[ H[_1 KW["("] _2 KW[")"] KW["{"]] _3] KW["}"]],
+   ControlCallNoArgs      	 -- V[ V is=2[ H[_1 KW["{"]] _2] KW["}"]],
+
+
+   PropVal                   -- H hs=0[_1 KW["="] _2],
+
+   Callback                  --  KW["{"] _1  KW["}"],
+
+   ScreenNoReturnType        --V[ V is=2[ H[_1 KW["screen"] _2 KW["("] _3 KW[")"] KW["{"]] _4] KW["}"]],
+   Control                   --V[ V is=2[ H[_1 KW["control"] _2 KW["("] _3 KW[")"] KW["{"]] _4] KW["}"]],
+
+
+   ExternalFunction          --H[ _1 KW["external"] KW["function"] _2 KW["("] _3 KW[")"] KW[":"] _4],
+
+   VarDeclInferredContrElem	 -- H[ KW["var"] _1 KW["="] _2],
+   VarDeclInferred           -- H[ KW["var"] _1 KW["="] _2 KW[";"]],
+
+   Return                    -- H[KW["return"] H hs=0[H[_1] KW[";"]]],
+	
+   Html                      -- V[ V is=2[ H[KW["<"] _1 _2 KW[">"]] _3] H[KW["</"] _4 KW[">"]]],
+
+
+	%%extraElemBecuase of failing PP
    %% Pretty printing table (see also Jsfax.generated.pp)
-   JSModule                       -- V[_1],
+   JSModule                       -- V[_1], 
    JSModule.1:iter-star           -- _1,
    JSVarDeclNoInit                -- H hs=1[KW["var"] H hs=0[_1 KW[";"]]],
    JSVarDeclNoInit.1:iter-star-sep-- _1 KW[","],
