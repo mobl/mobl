@@ -96,7 +96,7 @@ strategies
   cps-statements :
     [If(e, true-stat, false-stat)|stat*] ->
       <cps-expression(|[
-        <concat-strings> ["if(result__) ", <cps-statements> [true-stat|stat*], " else ", <cps-statements> [false-stat|stat*]]])> e
+        <concat-strings> [$[if([<expression-to-js> e])], <cps-statements> [true-stat|stat*], " else ", <cps-statements> [false-stat|stat*]]])> e
 
 
   cps-statements :
