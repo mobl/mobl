@@ -412,6 +412,7 @@ rules // Expressions
 
   exp-to-js :
     Callback(stat*) -> $[function(event, callback) {
+                           if(event && event.stopPropagation) event.stopPropagation();
                            [<cps-list-all-expressions; <concat> [<id>, [$[if(callback && callback.apply) callback(); return;]]]; cps-statements <+ debug(!"Could not translate to stats: "); fail> stat*]
                          }]
 
