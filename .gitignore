@@ -6,3 +6,7 @@ www/*.html
 build.generated.xml
 *.class
 /java/fileserver.jar
+compiler/bin/*
+compiler/src/*
+editor/java/trans/*
+www/*

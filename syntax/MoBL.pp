@@ -139,10 +139,16 @@
    If                        -- V[H[KW["if"] KW["("] _1 KW[")"]] _2 KW["else"] _3],
    IfNoElse                  -- V[H[KW["if"] KW["("] _1 KW[")"]] _2 ],
    WhenNoElse                -- V[ V is=2[ H[KW["when"] KW["("] _1 KW[")"] KW["{"]] _2] KW["}"]],
-
+   When                      -- V[ V is=2[ H[KW["when"] KW["("] _1 KW[")"] KW["{"]] _2] KW["}"] H[KW["else"] KW["{"]] _3 KW["}"]],
+	
+	
    Block                     -- V  [V is=2 [KW["{"] _1] KW["}"]],
    
+   Script                    -- V  [V is=2 [ H[KW["script"] KW["{"]] _1] KW["}"]],
+
+   
    For                       -- V[ V is=2[ H[KW["foreach"] KW["("] _1 KW[":"] _2 KW["in"] _3 KW[")"] KW["{"]] _4] KW["}"]],
+   ForInferred               -- V[ V is=2[ H[KW["foreach"] KW["("] _1 KW["in"] _2 KW[")"] KW["{"]] _3] KW["}"]],
    While                     -- V[ V is=2[ H[KW["while"] KW["("] _1 KW[")"] KW["{"]] _2] KW["}"]],
    ListInferred              -- V[ V is=2[ H[KW["list"] KW["("] _1 KW["in"] _2 KW[")"] KW["{"]] _3] KW["}"]],
 
@@ -155,6 +161,9 @@
    ControlCallNoBody         -- H[ _1 KW["("] _2 KW[")"]],
    ControlCall               -- V[ V is=2[ H[_1 KW["("] _2 KW[")"] KW["{"]] _3] KW["}"]],
    ControlCallNoArgs      	 -- V[ V is=2[ H[_1 KW["{"]] _2] KW["}"]],
+
+   ScreenString              -- H hs=0[ KW["\""] _1 KW["\""]],
+   String                    -- H hs=0[ KW["\""] _1 KW["\""]],
 
 
    PropVal                   -- H hs=0[_1 KW["="] _2],
@@ -169,11 +178,15 @@
 
    VarDeclInferredContrElem	 -- H[ KW["var"] _1 KW["="] _2],
    VarDeclInferred           -- H[ KW["var"] _1 KW["="] _2 KW[";"]],
+   VarDecl                   -- H[ KW["var"] _1 KW[":"] _2 KW["="] _3 KW[";"]],
 
    Return                    -- H[KW["return"] H hs=0[H[_1] KW[";"]]],
 	
    Html                      -- V[ V is=2[ H[KW["<"] _1 _2 KW[">"]] _3] H[KW["</"] _4 KW[">"]]],
 
+   Style                     -- V[ V is=2[H[ _1 KW["style"] _2 KW["{"]] _3] KW["}"]],
+   StyleMixinCall            -- H[_1 KW["("] _2 KW[")"] KW[";"]],
+		
 
 	%%extraElemBecuase of failing PP
    %% Pretty printing table (see also Jsfax.generated.pp)
