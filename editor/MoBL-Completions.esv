@@ -4,193 +4,194 @@ module MoBL-Completions
 
 completions
     //completion keyword  : "screen"
-    //completion template : "screen " "e" " () {\n\t  \n}\n"
+    //completion template "screen " "e" " () {\n\t  \n}\n"
 
     completion proposer : editor-complete
-    identifier lexical  : [A-Za-z0-9_\$]+
+    
+    // identifier lexical  : [A-Za-z0-9_\$]+
     completion trigger  : "\."
     completion trigger  : "::"
     completion trigger  : "\$"
 
 completions
 
-  completion template : Start =
+  completion template  Start : 
     "application " <name>
 
-  completion template : Start =
+  completion template Start :
     "module " <name>
 
-  completion template : Start =
+  completion template Start :
     "configuration"
 
-  completion template : Definition =
+  completion template Definition :
     "control " <name> "() {\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "screen " <name> "() {\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "entity " <name> " {\n\t\n}" (blank)
 
-  completion template : Definition =
-    "service " <name> " {\n\tresource someResource() : Dynamic {\n\t\turi = \"/someResource\"\n\t}\n}" (blank)
+  completion template Definition :
+    "service " <name> " {\n\tresource someResource() : Dynamic {\n\t\turi : \"/someResource\"\n\t}\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     // "import " <some::module> (blank)
 		"import " <someModule> (blank)
-  completion template : Definition =
+  completion template Definition :
     "resource " <some/file.png> (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "load " <some/file.js> (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "external type " <name> "{\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "type " <name> "{\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "external function " <name> "() {\n\t\n\}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "style " <name> " {\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "style mixin " <name> "() {\n\t\n}" (blank)
 
-  completion template : Definition =
-    "style $" <name> " = rgb(255, 255, 255)" (blank)
+  completion template Definition :
+    "style $" <name> " : rgb(255, 255, 255)" (blank)
 
 completions
 
-  completion template : LimitedExp =
-    "where " <prop> " == " <value>
+  completion template LimitedExp :
+    "where " <prop> " :: " <value>
 
-  completion template : LimitedExp =
+  completion template LimitedExp :
     "order by " <prop> " asc"
 
-  completion template : LimitedExp =
+  completion template LimitedExp :
     "limit " <n>
 
-  completion template : LimitedExp =
+  completion template LimitedExp :
     "offset " <n>
 
-  completion template : LimitedExp =
+  completion template LimitedExp :
     "prefetch " <prop>
 
 completions
 
-  completion template : Statement =
+  completion template Statement :
     "if" "(" <e> ") {\n\t\n}" (blank)
 
-  completion template : Statement =
+  completion template Statement :
     "if" "(" <e> ") {\n\t\n} else {\n\t\n}" (blank)
 
-  completion template : Statement =
+  completion template Statement :
     "foreach" "(" <x> " in " <coll> ") {\n\t\n}" (blank)
 
-  completion template : Statement =
-    "var " <x> " = " <value> ";" (blank)
+  completion template Statement :
+    "var " <x> " : " <value> ";" (blank)
 
-  completion template : Statement =
+  completion template Statement :
     "return " <value> ";" (blank)
 
-  completion template : Statement =
+  completion template Statement :
     "screen return " <value> ";" (blank)
 
 completions
 
-  completion template : ScreenElem =
-    "var " <x> " = " <value> (blank)
+  completion template ScreenElem :
+    "var " <x> " : " <value> (blank)
 
-  completion template : ScreenElem =
+  completion template ScreenElem :
     "list" "(" <x> " in " <coll> ") {\n\t\n}" (blank)
 
-  completion template : ScreenElem =
+  completion template ScreenElem :
     "when" "(" <e> ") {\n\t\n}" (blank)
 
-  completion template : ScreenElem =
+  completion template ScreenElem :
     "when" "(" <e> ") {\n\t\n} else {\n\t\n}" (blank)
 
 /*completions
 
-  completion template : Definition =
+  completion template Definition :
     "@service GET /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "@service PUT /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "@service POST /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "@service DELETE /" "\nfunction " <myService> "(req : Request, res : Response) {\n\t\n}" (blank)
 
-  completion template : Definition =
+  completion template Definition :
     "database host " <"localhost"> " name \"dbname\" username \"user\" password \"pass\"" (blank)
 */
 completions
 
-  completion template : Exp =
+  completion template Exp :
     "$data" "(" <path/to/image.png> ")"
 
-  completion template : StyleExp =
+  completion template StyleExp :
     "$data" "(" <path/to/image.png> ")"
 
 completions
 
 
-  completion template : Setting =
+  completion template Setting :
     "debug" (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "offline" (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "stdlib " <path> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "lib " <path> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "title " <"My Application"> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "icon " <path> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "html " <index.html> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "output " <"www"> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "release" "output " <"www"> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "database " <"mydb"> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "loadingHTML " <"""Loading"""> (blank)
 
-  completion template : Setting =
+  completion template Setting :
     "style $" <baseColor> " = rgb(100, 100, 100)" (blank)
     
-  completion template : Setting =
+  completion template Setting :
     "native {\n" 
 	    "\tusername " <"username">"\n" 
 	    "\tpassword " <"password">"\n" 
 	    "platforms " <android, blackberry, symbian, webos, ios>"\n"
     "}"(blank)
     
-  completion template : NativeSetting =
+  completion template NativeSetting :
   	"username" <"username"> (blank)
   	
-  completion template : NativeSetting =
+  completion template NativeSetting :
   	"password" <"password"> (blank)
   	
-  completion template : NativeSetting =
+  completion template NativeSetting :
   	"platforms " <android, blackberry, symbian, webos, ios> (blank)
   
   completion template PLATFORM :

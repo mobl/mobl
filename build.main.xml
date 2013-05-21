@@ -60,8 +60,8 @@
   </target>
   <!-- Main target -->
   <!--<target name="all-interpreter" depends="meta-sdf2table,sdf2table,ppgen,pppack,stratego.aster,stratego.ctree,sdf2imp,refresh" />-->
-  <target name="all-interpreter" depends="check-classpath,meta-sdf2table,sdf2table,ppgen,pppack,stratego.aster,stratego.ctree,java.jar,sdf2imp,refresh" />
-  <target name="all" depends="start-record,check-classpath,meta-sdf2table,compile-java-strategies,sdf2table,ppgen,pppack,stratego.aster,stratego.jar,java.jar,sdf2imp,refresh,stop-record" />
+  <target name="all-interpreter" depends="check-classpath,meta-sdf2table,sdf2table,ppgen,pppack,stratego.aster,stratego.ctree,java.jar,sdf2imp,refresh,sdf2imp.eclipse.load" />
+  <target name="all" depends="start-record,check-classpath,meta-sdf2table,compile-java-strategies,sdf2table,ppgen,pppack,stratego.aster,stratego.jar,java.jar,sdf2imp,refresh,sdf2imp.eclipse.load,stop-record" />
 
 
   <!-- Stratego to Java compiler -->
